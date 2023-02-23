@@ -16,6 +16,17 @@ public class PlayerGrounded : PlayerState
         base.UpdateLogic();
 
         // If the player isn't grounded, transition to air
+        // Jump
+        if (Input.GetButtonDown("Jump"))
+        {
+            Dictionary<string, string> _msg = new Dictionary<string, string>();
+            _msg.Add("jump", "true");
+            state_machine.TransitionTo("Air", _msg);
+        }
+        else if (!player_ref.is_grounded)
+        {
+            state_machine.TransitionTo("Air");
+        }
     }
 
     public override void UpdatePhysics() 

@@ -22,11 +22,6 @@ public class PlayerMovement : PlayerGrounded
         {
             state_machine.TransitionTo("Idle");
         }
-        // Jump
-        if (Input.GetButtonDown("Jump"))
-        {
-            state_machine.TransitionTo("Jump");
-        }
     }
 
     public override void UpdatePhysics() 

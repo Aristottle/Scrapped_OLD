@@ -22,11 +22,6 @@ public class PlayerIdle : PlayerGrounded
         {
             state_machine.TransitionTo("Ground Movement");
         }
-        // Jump
-        if (Input.GetButtonDown("Jump"))
-        {
-            state_machine.TransitionTo("Jump");
-        }
     }
 
     public override void UpdatePhysics() 
