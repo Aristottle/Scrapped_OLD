@@ -31,11 +31,11 @@ public class FiniteStateMachine : MonoBehaviour
     }
 
     // Called from the states to transition
-    public void TransitionTo(string state_name)
+    public void TransitionTo(string state_name, Dictionary<string, string> msg = null)
     {
         current_state.Exit();
         current_state = states[state_name];
-        current_state.Enter();
+        current_state.Enter(msg);
     }
 
     // Override to set initial state

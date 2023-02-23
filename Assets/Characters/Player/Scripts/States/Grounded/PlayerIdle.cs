@@ -6,7 +6,7 @@ public class PlayerIdle : PlayerGrounded
 {
     public PlayerIdle(FiniteStateMachine fsm) : base("Idle", fsm) { }
 
-    public override void Enter() 
+    public override void Enter(Dictionary<string, string> msg = null) 
     {
         base.Enter();
     }

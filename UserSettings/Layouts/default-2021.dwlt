@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 95
+  controlID: 125
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 41
+  controlID: 17
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 42
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -377,22 +377,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Characters/Player
+    - Assets/Characters/Player/Scripts/States/Air
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Characters/Player
+  - Assets/Characters/Player/Scripts/States/Air
   m_LastFoldersGridSize: -1
   m_LastProjectPath: U:\Unity\Projects\Scrapped
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7e6f0000
-    m_LastClickedID: 28542
-    m_ExpandedIDs: 00000000706e0000726e0000746e0000766e0000786e00007a6e0000866f0000da6f0000de6f000000ca9a3bffffff7f
+    m_SelectedIDs: e46f0000
+    m_LastClickedID: 28644
+    m_ExpandedIDs: 00000000706e0000726e0000746e0000766e0000786e00007a6e0000926e0000946e00009a6e0000e26e0000d46f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -550,9 +550,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7e6f0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ac12ffff9a44ffff16c5ffff2efbffff886b0000
+      m_ExpandedIDs: 2efbffff9a6b0000ea6b0000026c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -835,9 +835,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.825077, y: 2.363504, z: -13.563464}
+    m_Target: {x: 4.76611, y: 1.132118, z: -14.388257}
     speed: 2
-    m_Value: {x: 9.825077, y: 2.363504, z: -13.563464}
+    m_Value: {x: 4.76611, y: 1.132118, z: -14.388257}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -884,9 +884,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.02330839, y: 0.4315617, z: -0.011083452, w: 0.9017619}
+    m_Target: {x: 0.02985641, y: -0.7302316, z: 0.03204609, w: 0.6818629}
     speed: 2
-    m_Value: {x: 0.023307389, y: 0.43154314, z: -0.011082975, w: 0.9017231}
+    m_Value: {x: 0.029855015, y: -0.7301975, z: 0.032044593, w: 0.681831}
   m_Size:
     m_Target: 2.0615528
     speed: 2

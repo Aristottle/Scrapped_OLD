@@ -17319,6 +17319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518415699}
   - component: {fileID: 1518415701}
+  - component: {fileID: 1518415705}
   - component: {fileID: 1518415703}
   - component: {fileID: 1518415704}
   m_Layer: 0
@@ -17392,6 +17393,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   print_debug: 1
+--- !u!114 &1518415705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518415697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0ded6638d85d14e9c5787a8994c75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  air_control: 0.1
+  jump_force: 300
+  jump_cooldown: 0.2
+  walk_speed: 5
+  sprint_speed: 8
+  crouch_speed: 3
+  wallrun_speed: 10
+  acceleration: 10
+  standing_height: 2
+  crouch_height: 1
+  ground_drag: 8
+  air_drag: 0
+  ground_mask:
+    serializedVersion: 2
+    m_Bits: 128
+  ground_check_radius: 0.4
+  max_slope_angle: 45
+  capsule: {fileID: 832495393}
+  rb: {fileID: 1518415701}
+  bob_controller: {fileID: 1518415703}
+  is_grounded: 0
 --- !u!1 &1590317775
 GameObject:
   m_ObjectHideFlags: 0

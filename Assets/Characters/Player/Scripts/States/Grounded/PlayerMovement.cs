@@ -6,7 +6,7 @@ public class PlayerMovement : PlayerGrounded
 {
     public PlayerMovement(FiniteStateMachine fsm) : base("Ground Movement", fsm) { }
 
-    public override void Enter() 
+    public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
     }

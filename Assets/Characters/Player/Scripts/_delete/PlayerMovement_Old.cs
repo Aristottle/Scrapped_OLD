@@ -37,15 +37,14 @@ public class PlayerMovement_Old : MonoBehaviour
 
     [Header("References")]
     public CapsuleCollider capsule = null;
-    [SerializeField] Transform eyes = null;
+    // [SerializeField] Transform eyes = null;
+    public Rigidbody rb;
+    public HeadBobController bob_controller;
 
     float h_movement;
     float v_movement;
     Vector3 movement_direction;
     [HideInInspector] public bool is_grounded;
-
-    Rigidbody rb;
-    HeadBobController bob_controller;
 
     float player_height = 2f;
 

@@ -15,14 +15,14 @@ public class State
     }
 
     // Virtual functions - passthroughs for functionality driven by the state machine
-    public virtual void Enter() {}
+    public virtual void Enter(Dictionary<string, string> msg = null) {}
     public virtual void UpdateLogic() {}
     public virtual void UpdatePhysics() {}
     public virtual void Exit() {}
 
     // Can copy these into a new State for overrides:
     
-    // public override void Enter() 
+    // public override void Enter(Dictionary<string, string> msg = null) 
     // {
     //     base.Enter();
     // }

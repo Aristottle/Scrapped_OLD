@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PlayerState : State
 {
+    // This is set by the Player FSM on Awake()
+    protected PlayerController player_ref;
+
     public PlayerState(string name, FiniteStateMachine fsm) : base(name, fsm) { }
+
+    public void SetPlayerReference(PlayerController p)
+    {
+        player_ref = p;
+    }
 
     public Vector2 GetMovementInput()
     {
@@ -13,9 +21,9 @@ public class PlayerState : State
         return new Vector2(h_movement, v_movement).normalized;
     }
 
-    public override void Enter() 
+    public override void Enter(Dictionary<string, string> msg = null) 
     {
-        base.Enter();
+        base.Enter(msg);
     }
 
     public override void UpdateLogic() 
