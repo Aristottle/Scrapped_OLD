@@ -17,12 +17,10 @@ public class HeadBobController : MonoBehaviour
     private float toggle_speed = 3f;
     private Vector3 start_position;
     private Rigidbody rb;
-    private PlayerMovement movement;
     private Transform camera_clone;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
-        movement = GetComponent<PlayerMovement>();
         start_position = _camera.localPosition;
     }
 
@@ -37,7 +35,7 @@ public class HeadBobController : MonoBehaviour
         ResetPosition();
 
         if (speed < toggle_speed) return;
-        if (!movement.is_grounded) return;
+        // if (!movement.is_grounded) return;
 
         _camera.localPosition += CameraMotion();
     }

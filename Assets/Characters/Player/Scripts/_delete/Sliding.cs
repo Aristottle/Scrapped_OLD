@@ -7,7 +7,7 @@ public class Sliding : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform eyes;
     private Rigidbody rb;
-    private PlayerMovement movement;
+    private PlayerMovement_Old movement;
 
     [Header("Sliding")]
     [SerializeField] float max_slide_time = 1f;
@@ -22,7 +22,7 @@ public class Sliding : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        movement = GetComponent<PlayerMovement>();
+        movement = GetComponent<PlayerMovement_Old>();
     }
 
     private void Update() {

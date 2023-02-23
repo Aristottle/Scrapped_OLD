@@ -25,12 +25,12 @@ public class WallRunning : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform player;
     [SerializeField] Transform camera_ref;
-    private PlayerMovement movement_ref;
+    private PlayerMovement_Old movement_ref;
     private Rigidbody rb;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        movement_ref = GetComponent<PlayerMovement>();
+        movement_ref = GetComponent<PlayerMovement_Old>();
     }
 
     private void Update() {

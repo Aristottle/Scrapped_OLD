@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement_Old : MonoBehaviour
 {
     [Header("Control")]
     [SerializeField] float air_control = 0.1f;

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundMovement : PlayerState
+public class PlayerMovement : PlayerGrounded
 {
-    public PlayerGroundMovement(FiniteStateMachine fsm) : base("Ground Movement", fsm) { }
+    public PlayerMovement(FiniteStateMachine fsm) : base("Ground Movement", fsm) { }
 
     public override void Enter() 
     {
-
+        base.Enter();
     }
 
     public override void UpdateLogic() 
     {
+        base.UpdateLogic();
+
         Vector2 movement_input = GetMovementInput();
 
         // Ground Movement
@@ -20,15 +22,20 @@ public class PlayerGroundMovement : PlayerState
         {
             state_machine.TransitionTo("Idle");
         }
+        // Jump
+        if (Input.GetButtonDown("Jump"))
+        {
+            state_machine.TransitionTo("Jump");
+        }
     }
 
     public override void UpdatePhysics() 
     {
-
+        base.UpdatePhysics();
     }
 
     public override void Exit() 
     {
-
+        base.Exit();
     }
 }

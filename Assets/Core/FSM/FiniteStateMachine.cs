@@ -49,6 +49,6 @@ public class FiniteStateMachine : MonoBehaviour
     {
         if (!print_debug) return;
         string content = current_state != null ? current_state.state_name : "NULL";
-        GUILayout.Label($"<color='black'><size=40>Current State: {content}</size></color>");
+        GUILayout.Label($"<color='black'><size=24>Current State: {content}</size></color>");
     }
 }

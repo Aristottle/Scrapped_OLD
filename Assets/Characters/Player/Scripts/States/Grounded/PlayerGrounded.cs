@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : State
+public class PlayerGrounded : PlayerState
 {
-    public PlayerState(string name, FiniteStateMachine fsm) : base(name, fsm) { }
-
-    public Vector2 GetMovementInput()
-    {
-        float h_movement = Input.GetAxisRaw("Horizontal");
-        float v_movement = Input.GetAxisRaw("Vertical");
-        return new Vector2(h_movement, v_movement).normalized;
-    }
+    public PlayerGrounded(string name, FiniteStateMachine fsm) : base(name, fsm) { }
 
     public override void Enter() 
     {
@@ -21,6 +14,8 @@ public class PlayerState : State
     public override void UpdateLogic() 
     {
         base.UpdateLogic();
+
+        // If the player isn't grounded, transition to air
     }
 
     public override void UpdatePhysics() 
