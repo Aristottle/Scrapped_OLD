@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : PlayerGrounded
+public class PlayerSlide : PlayerGrounded
 {
-    public PlayerMovement(FiniteStateMachine fsm) : base("Walk", fsm) { }
+    public PlayerSlide(FiniteStateMachine fsm) : base("Slide", fsm) { }
 
     public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
-
         player_ref.drag = player_ref.ground_drag;
-
-        player_ref.bob_controller.amp_multiplier = 1f;
-        player_ref.bob_controller.freq_multiplier = 1f;
     }
 
     public override void UpdateLogic() 
@@ -22,20 +18,10 @@ public class PlayerMovement : PlayerGrounded
 
         Vector2 movement_input = player_ref.GetMovementInput();
 
-        // Idle
+        // Ground Movement
         if (Mathf.Abs(movement_input.magnitude) < Mathf.Epsilon)
         {
             state_machine.TransitionTo("Idle");
-        }
-        // Sprint
-        if (movement_input.y >= .5 && Input.GetButton("Sprint"))
-        {
-            state_machine.TransitionTo("Sprint");
-        }
-        // Crouch
-        if (Input.GetButtonDown("Crouch"))
-        {
-            state_machine.TransitionTo("Crouch");
         }
     }
 

@@ -20,12 +20,9 @@ public class PlayerAir : PlayerState
     {
         base.Enter();
         // Jump if the msg indicates that we should
+        player_ref.drag = player_ref.air_drag;
         string should_jump = string.Empty;
-        if (msg != null) msg.TryGetValue("jump", out should_jump);
-        if (should_jump != string.Empty)
-        {
-            Jump();
-        }
+        if (CheckEntryMessage(msg, "jump", out should_jump)) Jump();
     }
 
     public override void UpdateLogic() 
@@ -47,6 +44,7 @@ public class PlayerAir : PlayerState
     public override void UpdatePhysics() 
     {
         base.UpdatePhysics();
+        player_ref.MovePlayer(player_ref.desired_speed);
     }
 
     public override void Exit() 

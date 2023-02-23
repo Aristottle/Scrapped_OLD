@@ -14,13 +14,6 @@ public class PlayerState : State
         player_ref = p;
     }
 
-    public Vector2 GetMovementInput()
-    {
-        float h_movement = Input.GetAxisRaw("Horizontal");
-        float v_movement = Input.GetAxisRaw("Vertical");
-        return new Vector2(h_movement, v_movement).normalized;
-    }
-
     public override void Enter(Dictionary<string, string> msg = null) 
     {
         base.Enter(msg);

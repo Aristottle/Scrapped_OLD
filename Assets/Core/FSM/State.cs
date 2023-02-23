@@ -14,6 +14,17 @@ public class State
         this.state_machine = fsm;
     }
 
+    protected bool CheckEntryMessage(Dictionary<string, string> _msg, string key, out string value)
+    {
+        if (_msg != null) 
+        {
+            _msg.TryGetValue(key, out value);
+            if (value != null) return true;
+        }
+        value = null;
+        return false;
+    }
+
     // Virtual functions - passthroughs for functionality driven by the state machine
     public virtual void Enter(Dictionary<string, string> msg = null) {}
     public virtual void UpdateLogic() {}

@@ -54,6 +54,6 @@ public class PlayerLook : MonoBehaviour
         y_rot += mouse_x * look_sensitivity * look_multi;
         x_rot -= mouse_y * look_sensitivity * look_multi;
 
-        x_rot = Mathf.Clamp(x_rot, -90f, 90f);
+        x_rot = Mathf.Clamp(x_rot, -87f, 87f);
     }
 }

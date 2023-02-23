@@ -7,6 +7,8 @@ public class PlayerFSM : FiniteStateMachine
     [HideInInspector] public PlayerIdle idle_state;
     [HideInInspector] public PlayerMovement ground_movement_state;
     [HideInInspector] public PlayerAir air_state;
+    [HideInInspector] public PlayerSprint sprint_state;
+    [HideInInspector] public PlayerCrouch crouch_state;
 
     private PlayerController player;
 
@@ -22,6 +24,10 @@ public class PlayerFSM : FiniteStateMachine
         states.Add(ground_movement_state.state_name, ground_movement_state);
         air_state = new PlayerAir(this);
         states.Add(air_state.state_name, air_state);
+        sprint_state = new PlayerSprint(this);
+        states.Add(sprint_state.state_name, sprint_state);
+        crouch_state = new PlayerCrouch(this);
+        states.Add(crouch_state.state_name, crouch_state);
 
         // Set the references on all of the states
         foreach (PlayerState s in states.Values)

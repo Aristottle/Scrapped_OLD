@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdle : PlayerGrounded
+public class PlayerCrouch : PlayerGrounded
 {
-    public PlayerIdle(FiniteStateMachine fsm) : base("Idle", fsm) { }
+    public PlayerCrouch(FiniteStateMachine fsm) : base("Crouch", fsm) { }
 
-    public override void Enter(Dictionary<string, string> msg = null) 
+    public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
+
         player_ref.drag = player_ref.ground_drag;
+        player_ref.Crouch();
     }
 
     public override void UpdateLogic() 
@@ -18,25 +20,24 @@ public class PlayerIdle : PlayerGrounded
 
         Vector2 movement_input = player_ref.GetMovementInput();
 
-        // Ground Movement
-        if (Mathf.Abs(movement_input.magnitude) > Mathf.Epsilon)
+        // Crouch end
+        if (Input.GetButtonUp("Crouch"))
         {
-            state_machine.TransitionTo("Walk");
-        }
-        // Crouch
-        if (Input.GetButtonDown("Crouch"))
-        {
-            state_machine.TransitionTo("Crouch");
+            state_machine.TransitionTo("Idle");
         }
     }
 
     public override void UpdatePhysics() 
     {
         base.UpdatePhysics();
+
+        player_ref.MovePlayer(player_ref.crouch_speed);
     }
 
     public override void Exit() 
     {
         base.Exit();
+
+        player_ref.Stand();
     }
 }

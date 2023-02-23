@@ -11,7 +11,7 @@ public class PlayerGrounded : PlayerState
         base.Enter();
     }
 
-    public override void UpdateLogic() 
+    public override void UpdateLogic()
     {
         base.UpdateLogic();
 

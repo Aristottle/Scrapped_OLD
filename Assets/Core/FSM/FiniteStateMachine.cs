@@ -24,7 +24,7 @@ public class FiniteStateMachine : MonoBehaviour
         if (current_state != null) current_state.UpdateLogic();
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         // Pass the physics logic to the current state
         if (current_state != null) current_state.UpdatePhysics();
@@ -36,6 +36,11 @@ public class FiniteStateMachine : MonoBehaviour
         current_state.Exit();
         current_state = states[state_name];
         current_state.Enter(msg);
+
+        if (print_debug)
+        {
+            Debug.Log($"Transitioned to {current_state.state_name}");
+        }
     }
 
     // Override to set initial state
