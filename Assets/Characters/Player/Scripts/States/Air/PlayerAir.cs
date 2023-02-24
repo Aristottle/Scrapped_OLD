@@ -29,6 +29,9 @@ public class PlayerAir : PlayerState
     {
         base.UpdateLogic();
 
+        // Wallrun check
+        player_ref.CheckWall();
+
         if (player_ref.is_grounded)
         {
             Vector3 flat_velocity = new Vector3(player_ref.rb.velocity.x, 0, player_ref.rb.velocity.z);
@@ -45,6 +48,14 @@ public class PlayerAir : PlayerState
         {
             can_air_jump = false;
             Jump();
+        }
+        // Wallrunning
+        if (player_ref.CanWallrun())
+        {
+            if (player_ref.wall_left || player_ref.wall_right)
+            {
+                state_machine.TransitionTo("Wallrun");
+            }
         }
     }
 

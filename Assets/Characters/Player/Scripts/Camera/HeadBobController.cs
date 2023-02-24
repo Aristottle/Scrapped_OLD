@@ -14,7 +14,7 @@ public class HeadBobController : MonoBehaviour
     [HideInInspector] public float amp_multiplier = 1f;
     [HideInInspector] public float freq_multiplier = 1f;
 
-    private float toggle_speed = 3f;
+    private float toggle_speed = 1.25f;
     private Vector3 start_position;
     private Rigidbody rb;
     private Transform camera_clone;

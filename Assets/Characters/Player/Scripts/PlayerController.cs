@@ -31,9 +31,22 @@ public class PlayerController : MonoBehaviour
     [Header("Sliding")]
     public float slide_impulse = 300f;
 
+    [Header("Wallrunning")]
+    public float wall_check_distance = .5f;
+    public float min_jump_height = 1.5f;
+    public float wallrun_gravity = 1.5f;
+    public float wallrun_movement_force = 200f;
+    public float wall_jump_force = 350f;
+    public float max_wallrun_time = 5f;
+    [HideInInspector] public bool wall_left = false;
+    [HideInInspector] public bool wall_right = false;
+    [HideInInspector] public RaycastHit wall_hit_right;
+    [HideInInspector] public RaycastHit wall_hit_left;
+
     [Header("Drag")]
-    public float drag;
+    [HideInInspector] public float drag;
     public float ground_drag {get {return 8f;}}
+    public float wallrun_drag {get {return 2f;}}
     public float air_drag {get {return 0f;}}
     public float slide_drag {get {return 1f;}}
 
@@ -77,6 +90,9 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.drag = drag;
+
+        // Keep the velocity clamped
+        ClampVelocity();
     }
 
     public Vector2 GetMovementInput()
@@ -114,9 +130,6 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(corrected_direction.normalized * movement_speed * rb.mass * control_multiplier, ForceMode.Force);
 
-        // Keep the velocity clamped
-        ClampVelocity();
-
         // Turn off gravity when we are on a slope
         rb.useGravity = !OnSlope();
     }
@@ -138,6 +151,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Slope Handling
+    /// </summary>
+    /// <returns></returns>
+
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slope_hit, capsule.height / 2f + ground_check_radius))
@@ -153,6 +171,10 @@ public class PlayerController : MonoBehaviour
         return Vector3.ProjectOnPlane(movement_direction, slope_hit.normal).normalized;
     }
 
+    /// <summary>
+    /// Crouching logic
+    /// </summary>
+
     public void Crouch()
     {
         capsule.height = crouch_height;
@@ -165,6 +187,11 @@ public class PlayerController : MonoBehaviour
         capsule.height = standing_height;
     }
 
+    /// <summary>
+    /// Ground check control
+    /// </summary>
+    /// <param name="duration"></param>
+
     private void PauseGroundCheck(float duration)
     {
         do_ground_check = false;
@@ -174,5 +201,43 @@ public class PlayerController : MonoBehaviour
     private void ResumeGroundCheck()
     {
         do_ground_check = true;
+    }
+
+    /// <summary>
+    /// Wall check logic. Called from the air and wallrun states in their update_logic()
+    /// </summary>
+
+    public void CheckWall()
+    {
+        wall_left = Physics.Raycast(transform.position, -transform.right, out wall_hit_left, capsule.radius + wall_check_distance);
+        wall_right = Physics.Raycast(transform.position, transform.right, out wall_hit_right, capsule.radius + wall_check_distance);
+    }
+
+    public bool CanWallrun()
+    {
+        return !Physics.Raycast(transform.position, Vector3.down, (capsule.height / 2f) + min_jump_height, ground_mask);
+    }
+
+    public void Wallrun()
+    {
+        rb.useGravity = false;
+
+        Vector3 wall_normal = wall_right ? wall_hit_right.normal : wall_hit_left.normal;
+
+        Vector3 wall_forward = Vector3.Cross(wall_normal, transform.up);
+
+        // Move in the direction we're facing
+        if ((transform.forward - wall_forward).magnitude > (transform.forward - -wall_forward).magnitude)
+            wall_forward *= -1;
+
+        // Wallrun movement
+        rb.AddForce(wall_forward * wallrun_movement_force, ForceMode.Force);
+
+        // Wall adherance
+        if (!(wall_left && GetMovementInput().x > 0) && !(wall_right && GetMovementInput().x < 0))
+            rb.AddForce(-wall_normal * 100f, ForceMode.Force);
+
+        // Wallrun gravity
+        rb.AddForce(Vector3.down * wallrun_gravity, ForceMode.Force);
     }
 }

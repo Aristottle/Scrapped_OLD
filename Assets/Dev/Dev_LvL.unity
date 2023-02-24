@@ -11298,7 +11298,7 @@ GameObject:
   - component: {fileID: 832495392}
   - component: {fileID: 832495391}
   - component: {fileID: 832495393}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17887,9 +17887,9 @@ GameObject:
   - component: {fileID: 1518415705}
   - component: {fileID: 1518415703}
   - component: {fileID: 1518415704}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17971,17 +17971,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   air_control: 0.1
-  jump_force: 250
+  jump_force: 300
   jump_cooldown: 0.2
   desired_speed: 0
-  walk_speed: 5
-  sprint_speed: 8
-  crouch_speed: 3
-  wallrun_speed: 10
+  walk_speed: 4
+  sprint_speed: 6
+  crouch_speed: 2
+  wallrun_speed: 8
   acceleration: 10
   standing_height: 2
   crouch_height: 1
-  slide_impulse: 250
+  slide_impulse: 350
+  wall_check_distance: 0.25
+  min_jump_height: 0.75
+  wallrun_gravity: 50
+  wallrun_movement_force: 1000
+  wall_jump_force: 350
+  max_wallrun_time: 2
+  wall_left: 0
+  wall_right: 0
   drag: 0
   ground_mask:
     serializedVersion: 2
@@ -18346,7 +18354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592794811}
   - component: {fileID: 1592794812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,7 @@ public class PlayerSlide : PlayerGrounded
     public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
+        player_ref.desired_speed = player_ref.wallrun_speed;
         player_ref.drag = player_ref.slide_drag;
         player_ref.Crouch();
         // Apply the drag impulse to the player
