@@ -31,6 +31,13 @@ public class PlayerAir : PlayerState
 
         if (player_ref.is_grounded)
         {
+            Vector3 flat_velocity = new Vector3(player_ref.rb.velocity.x, 0, player_ref.rb.velocity.z);
+            // If we're going faster than walk_speed horizontally and the crouch button is held, slide
+            if (flat_velocity.magnitude >= player_ref.walk_speed && Input.GetButton("Crouch"))
+            {
+                state_machine.TransitionTo("Slide");
+                return;
+            }
             state_machine.TransitionTo("Idle");
         }
         // Air jump

@@ -35,7 +35,7 @@ public class PlayerSprint : PlayerGrounded
         // Slide
         if (Input.GetButtonDown("Crouch"))
         {
-            // state_machine.TransitionTo("Slide");
+            state_machine.TransitionTo("Slide");
         }
     }
 

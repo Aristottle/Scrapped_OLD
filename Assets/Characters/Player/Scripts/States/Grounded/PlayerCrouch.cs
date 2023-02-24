@@ -21,7 +21,7 @@ public class PlayerCrouch : PlayerGrounded
         Vector2 movement_input = player_ref.GetMovementInput();
 
         // Crouch end
-        if (Input.GetButtonUp("Crouch"))
+        if (Input.GetButtonDown("Crouch"))
         {
             state_machine.TransitionTo("Idle");
         }

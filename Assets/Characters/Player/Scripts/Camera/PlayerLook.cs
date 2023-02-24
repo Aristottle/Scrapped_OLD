@@ -35,7 +35,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
+        if (Cursor.lockState == CursorLockMode.Locked) HandleInput();
 
         // Apply the rotations
         transform.localRotation = Quaternion.Euler(x_rot, 0, 0);

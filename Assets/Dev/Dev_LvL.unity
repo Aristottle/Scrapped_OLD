@@ -17392,7 +17392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b65c8a17e15c7842bf0938bd8c3037c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  print_debug: 0
+  print_debug: 1
 --- !u!114 &1518415705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17416,6 +17416,7 @@ MonoBehaviour:
   acceleration: 10
   standing_height: 2
   crouch_height: 1
+  slide_impulse: 250
   drag: 0
   ground_mask:
     serializedVersion: 2

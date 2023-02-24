@@ -6,10 +6,16 @@ public class PlayerSlide : PlayerGrounded
 {
     public PlayerSlide(FiniteStateMachine fsm) : base("Slide", fsm) { }
 
+    bool stay_crouched = false;
+
     public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
-        player_ref.drag = player_ref.ground_drag;
+        player_ref.drag = player_ref.slide_drag;
+        player_ref.Crouch();
+        // Apply the drag impulse to the player
+        Vector3 impulse_direction = (player_ref.transform.forward - player_ref.transform.up).normalized;
+        player_ref.rb.AddForce(impulse_direction * player_ref.slide_impulse, ForceMode.Impulse);
     }
 
     public override void UpdateLogic() 
@@ -18,22 +24,28 @@ public class PlayerSlide : PlayerGrounded
 
         Vector2 movement_input = player_ref.GetMovementInput();
 
-        // Ground Movement
-        if (Mathf.Abs(movement_input.magnitude) < Mathf.Epsilon)
+        // If we go below walking speed, stop the slide
+        if (player_ref.rb.velocity.magnitude < player_ref.walk_speed)
         {
-            state_machine.TransitionTo("Idle");
+            if (player_ref.GetMovementInput().y >= .5f && Input.GetButton("Sprint"))
+                state_machine.TransitionTo("Sprint");
+            else
+            {
+                stay_crouched = true;
+                state_machine.TransitionTo("Crouch");
+            }
         }
     }
 
     public override void UpdatePhysics() 
     {
         base.UpdatePhysics();
-
-        player_ref.MovePlayer(player_ref.walk_speed);
     }
 
     public override void Exit() 
     {
         base.Exit();
+        if (!stay_crouched) player_ref.Stand();
+        stay_crouched = false;
     }
 }

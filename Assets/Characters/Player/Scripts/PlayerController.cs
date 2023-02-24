@@ -28,10 +28,14 @@ public class PlayerController : MonoBehaviour
     public float standing_height = 2f;
     public float crouch_height = 1f;
 
+    [Header("Sliding")]
+    public float slide_impulse = 300f;
+
     [Header("Drag")]
     public float drag;
     public float ground_drag {get {return 8f;}}
     public float air_drag {get {return 0f;}}
+    public float slide_drag {get {return 1f;}}
 
     [Header("Ground Check")]
     [SerializeField] LayerMask ground_mask;
