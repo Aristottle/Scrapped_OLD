@@ -103,7 +103,7 @@ public class PlayerWallrun : PlayerState
             direction = player_ref.wall_hit_right.normal;
         }
         // Push away from wall
-        player_ref.rb.AddForce(direction.normalized * 100, ForceMode.Impulse);
+        player_ref.rb.AddForce(direction.normalized * 150, ForceMode.Impulse);
         // Push down
         player_ref.rb.AddForce(-player_ref.transform.up * 100, ForceMode.Impulse);
 

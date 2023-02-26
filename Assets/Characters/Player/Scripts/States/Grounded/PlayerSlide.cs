@@ -59,7 +59,6 @@ public class PlayerSlide : PlayerGrounded
         
         // Reset camera tilt and fov
         player_ref.camera_fx.TiltCamera(0f, 0.1f);
-        player_ref.camera_fx.Invoke("EnableHeadBob", .1f);
         player_ref.camera_fx.OffsetFOV(-fov_offset);
 
         if (!stay_crouched) player_ref.Stand();
