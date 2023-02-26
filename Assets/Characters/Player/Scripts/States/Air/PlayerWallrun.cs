@@ -8,6 +8,8 @@ public class PlayerWallrun : PlayerState
 
     float time_elapsed = 0f;
 
+    float tilt_amount = 10f;
+
     public override void Enter(Dictionary<string, string> msg = null) 
     {
         base.Enter(msg);
@@ -19,6 +21,11 @@ public class PlayerWallrun : PlayerState
         // Dampen fall speed
         if (player_ref.rb.velocity.y < -1f)
             player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
+
+        // Tilt camera
+        
+        // Apply fov change
+
     }
 
     public override void UpdateLogic() 
@@ -53,10 +60,7 @@ public class PlayerWallrun : PlayerState
                 state_machine.TransitionTo("Air");
             }
         }
-        else
-        {
-            state_machine.TransitionTo("Air");
-        }
+        else state_machine.TransitionTo("Air");
     }
 
     public override void Exit() 
@@ -66,23 +70,20 @@ public class PlayerWallrun : PlayerState
         player_ref.rb.useGravity = true;
 
         time_elapsed = 0f;
+
+        // Reset camera tilt and fov
+        
     }
 
     private void WallJump()
     {
-        Vector3 jump_direction = player_ref.transform.up + player_ref.transform.forward;
-        if (player_ref.wall_left)
-        {
-            jump_direction += player_ref.wall_hit_left.normal;
-        }
-        else if (player_ref.wall_right)
-        {
-            jump_direction += player_ref.wall_hit_right.normal;
-        }
+        // Calculate the horizontal force and combine it with the vertical force for the final
+        Vector3 h_direction = player_ref.transform.forward + (player_ref.wall_left ? player_ref.wall_hit_left.normal : player_ref.wall_hit_right.normal);
+        Vector3 final_force = (player_ref.transform.up * player_ref.wall_jump_v_force) + (h_direction * player_ref.wall_jump_h_force);
         // Reset y-velocity
         player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
         // Apply the jumping force to the player
-        player_ref.rb.AddForce(jump_direction.normalized * player_ref.wall_jump_force, ForceMode.Impulse);
+        player_ref.rb.AddForce(final_force, ForceMode.Impulse);
         // Transition to air state
         state_machine.TransitionTo("Air");
     }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+// using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,7 +38,8 @@ public class PlayerController : MonoBehaviour
     public float min_jump_height = 1.5f;
     public float wallrun_gravity = 1.5f;
     public float wallrun_movement_force = 200f;
-    public float wall_jump_force = 350f;
+    public float wall_jump_v_force = 400f;
+    public float wall_jump_h_force = 200f;
     public float max_wallrun_time = 5f;
     [HideInInspector] public bool wall_left = false;
     [HideInInspector] public bool wall_right = false;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public CapsuleCollider capsule = null;
     public Rigidbody rb;
     public HeadBobController bob_controller;
+    public Camera camera_ref;
 
     [HideInInspector] public bool is_grounded = true;
     bool do_ground_check = true;
@@ -215,7 +219,7 @@ public class PlayerController : MonoBehaviour
 
     public bool CanWallrun()
     {
-        return !Physics.Raycast(transform.position, Vector3.down, (capsule.height / 2f) + min_jump_height, ground_mask);
+        return !Physics.Raycast(transform.position, Vector3.down, (capsule.height / 2f) + min_jump_height, ground_mask) && (GetMovementInput().y >= 0.1f);
     }
 
     public void Wallrun()
@@ -239,5 +243,10 @@ public class PlayerController : MonoBehaviour
 
         // Wallrun gravity
         rb.AddForce(Vector3.down * wallrun_gravity, ForceMode.Force);
+    }
+
+    public void TiltCamera(float tilt, float time = .3f)
+    {
+        
     }
 }

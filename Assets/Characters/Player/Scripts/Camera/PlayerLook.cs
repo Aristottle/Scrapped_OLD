@@ -11,7 +11,6 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] float position_lerp_speed = 6f;
 
     [Header("References")]
-    [SerializeField] WallRunning wallrunning_ref;
     [SerializeField] CapsuleCollider capsule;
 
     float mouse_x;

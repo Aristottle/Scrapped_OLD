@@ -94,7 +94,6 @@ MonoBehaviour:
   look_sensitivity: 1
   player_transform: {fileID: 6881224231963196588}
   position_lerp_speed: 4
-  wallrunning_ref: {fileID: 0}
   capsule: {fileID: 6881224233455062238}
 --- !u!1 &6881224231963196590
 GameObject:
@@ -176,7 +175,8 @@ MonoBehaviour:
   min_jump_height: 0.75
   wallrun_gravity: 50
   wallrun_movement_force: 1000
-  wall_jump_force: 350
+  wall_jump_v_force: 300
+  wall_jump_h_force: 200
   max_wallrun_time: 2
   wall_left: 0
   wall_right: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   capsule: {fileID: 6881224233455062238}
   rb: {fileID: 6881224231963196586}
   bob_controller: {fileID: 6881224231963196584}
+  camera_ref: {fileID: 6881224233742182553}
   is_grounded: 0
 --- !u!114 &6881224231963196584
 MonoBehaviour:
