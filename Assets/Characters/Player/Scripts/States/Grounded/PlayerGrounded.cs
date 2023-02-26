@@ -9,6 +9,10 @@ public class PlayerGrounded : PlayerState
     public override void Enter(Dictionary<string, string> msg = null) 
     {
         base.Enter();
+
+        player_ref.camera_fx.TiltCamera(0f, .1f);
+
+        player_ref.camera_fx.ToggleHeadBob(true);
     }
 
     public override void UpdateLogic()
@@ -37,5 +41,7 @@ public class PlayerGrounded : PlayerState
     public override void Exit() 
     {
         base.Exit();
+
+        player_ref.camera_fx.ToggleHeadBob(false);
     }
 }

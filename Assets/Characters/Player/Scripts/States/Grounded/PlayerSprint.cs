@@ -12,8 +12,7 @@ public class PlayerSprint : PlayerGrounded
 
         player_ref.drag = player_ref.ground_drag;
         
-        player_ref.bob_controller.amp_multiplier = 1.5f;
-        player_ref.bob_controller.freq_multiplier = 1.5f;
+        player_ref.camera_fx.SetHeadBobMultipliers(1.5f, 1.5f);
     }
 
     public override void UpdateLogic() 
@@ -50,7 +49,6 @@ public class PlayerSprint : PlayerGrounded
     {
         base.Exit();
 
-        player_ref.bob_controller.amp_multiplier = 1f;
-        player_ref.bob_controller.freq_multiplier = 1f;
+        player_ref.camera_fx.SetHeadBobMultipliers();
     }
 }

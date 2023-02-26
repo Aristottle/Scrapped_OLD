@@ -9,6 +9,7 @@ public class PlayerWallrun : PlayerState
     float time_elapsed = 0f;
 
     float tilt_amount = 10f;
+    float fov_offset = 5f;
 
     public override void Enter(Dictionary<string, string> msg = null) 
     {
@@ -23,8 +24,9 @@ public class PlayerWallrun : PlayerState
             player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
 
         // Tilt camera
-        
+        player_ref.camera_fx.TiltCamera(player_ref.wall_right ? tilt_amount : tilt_amount * -1);
         // Apply fov change
+        player_ref.camera_fx.OffsetFOV(fov_offset);
 
     }
 
@@ -72,7 +74,8 @@ public class PlayerWallrun : PlayerState
         time_elapsed = 0f;
 
         // Reset camera tilt and fov
-        
+        player_ref.camera_fx.TiltCamera(0f);
+        player_ref.camera_fx.OffsetFOV(-fov_offset);
     }
 
     private void WallJump()

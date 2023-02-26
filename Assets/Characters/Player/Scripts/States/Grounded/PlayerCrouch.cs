@@ -6,6 +6,8 @@ public class PlayerCrouch : PlayerGrounded
 {
     public PlayerCrouch(FiniteStateMachine fsm) : base("Crouch", fsm) { }
 
+    bool wants_to_stop = false;
+
     public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
@@ -20,11 +22,12 @@ public class PlayerCrouch : PlayerGrounded
 
         Vector2 movement_input = player_ref.GetMovementInput();
 
-        // Crouch end
         if (Input.GetButtonDown("Crouch"))
-        {
+            wants_to_stop = !wants_to_stop;
+
+        // Crouch end
+        if (wants_to_stop && player_ref.CanStand())
             state_machine.TransitionTo("Idle");
-        }
     }
 
     public override void UpdatePhysics() 
@@ -39,5 +42,7 @@ public class PlayerCrouch : PlayerGrounded
         base.Exit();
 
         player_ref.Stand();
+
+        wants_to_stop = false;
     }
 }

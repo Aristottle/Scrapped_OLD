@@ -106,8 +106,9 @@ GameObject:
   - component: {fileID: 6881224231963196588}
   - component: {fileID: 6881224231963196586}
   - component: {fileID: 6881224231963196582}
-  - component: {fileID: 6881224231963196584}
   - component: {fileID: 6881224231963196583}
+  - component: {fileID: 2939912696143863895}
+  - component: {fileID: 6881224231963196584}
   m_Layer: 6
   m_Name: PlayerController
   m_TagString: Player
@@ -170,7 +171,8 @@ MonoBehaviour:
   acceleration: 10
   standing_height: 2
   crouch_height: 1
-  slide_impulse: 350
+  slide_impulse: 400
+  slide_direction_influence: 0.5
   wall_check_distance: 0.25
   min_jump_height: 0.75
   wallrun_gravity: 50
@@ -188,28 +190,8 @@ MonoBehaviour:
   max_slope_angle: 45
   capsule: {fileID: 6881224233455062238}
   rb: {fileID: 6881224231963196586}
-  bob_controller: {fileID: 6881224231963196584}
-  camera_ref: {fileID: 6881224233742182553}
+  camera_fx: {fileID: 2939912696143863895}
   is_grounded: 0
---- !u!114 &6881224231963196584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881224231963196590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97f7cd784b8fcf4b94e24a131213fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enable: 1
-  amplitude: 0.075
-  frequency: 15
-  _camera: {fileID: 6881224233742182556}
-  _camera_root: {fileID: 6881224231764641475}
-  amp_multiplier: 1
-  freq_multiplier: 1
 --- !u!114 &6881224231963196583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +205,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   print_debug: 1
+--- !u!114 &2939912696143863895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881224231963196590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db64d433665f394c881ca3311afed2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bob_controller: {fileID: 6881224231963196584}
+  camera_ref: {fileID: 6881224233742182553}
+--- !u!114 &6881224231963196584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881224231963196590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97f7cd784b8fcf4b94e24a131213fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+  amplitude: 0.05
+  frequency: 15
+  _camera: {fileID: 6881224233742182556}
+  _camera_root: {fileID: 6881224231764641475}
+  amp_multiplier: 1
+  freq_multiplier: 1
 --- !u!1 &6881224233076520679
 GameObject:
   m_ObjectHideFlags: 0

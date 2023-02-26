@@ -12,8 +12,7 @@ public class PlayerMovement : PlayerGrounded
 
         player_ref.drag = player_ref.ground_drag;
 
-        player_ref.bob_controller.amp_multiplier = 1f;
-        player_ref.bob_controller.freq_multiplier = 1f;
+        player_ref.camera_fx.SetHeadBobMultipliers();
     }
 
     public override void UpdateLogic() 
