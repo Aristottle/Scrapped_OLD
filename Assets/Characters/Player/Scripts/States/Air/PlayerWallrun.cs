@@ -19,6 +19,8 @@ public class PlayerWallrun : PlayerState
 
         player_ref.desired_speed = player_ref.wallrun_speed;
 
+        player_ref.camera_fx.ToggleHeadBob(true);
+
         // Dampen fall speed
         if (player_ref.rb.velocity.y < -1f)
             player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
@@ -76,6 +78,7 @@ public class PlayerWallrun : PlayerState
         // Reset camera tilt and fov
         player_ref.camera_fx.TiltCamera(0f);
         player_ref.camera_fx.OffsetFOV(-fov_offset);
+        player_ref.camera_fx.ToggleHeadBob(false);
     }
 
     private void WallJump()

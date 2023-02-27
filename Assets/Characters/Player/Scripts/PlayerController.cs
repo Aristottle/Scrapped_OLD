@@ -214,14 +214,15 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch()
     {
-        capsule.height = crouch_height;
-        rb.AddForce(-transform.up * 500f, ForceMode.Impulse);
         PauseGroundCheck(0.3f);
+        capsule.height = crouch_height;
+        rb.AddForce(-transform.up * 300f, ForceMode.Impulse);
     }
 
     public void Stand()
     {
         capsule.height = standing_height;
+        PauseGroundCheck(0.3f);
     }
 
     public bool CanStand()
@@ -235,7 +236,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     /// <param name="duration"></param>
 
-    private void PauseGroundCheck(float duration)
+    public void PauseGroundCheck(float duration)
     {
         do_ground_check = false;
         Invoke(nameof(ResumeGroundCheck), duration);
