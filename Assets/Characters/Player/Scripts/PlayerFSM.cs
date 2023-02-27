@@ -11,6 +11,8 @@ public class PlayerFSM : FiniteStateMachine
     [HideInInspector] public PlayerCrouch crouch_state;
     [HideInInspector] public PlayerSlide slide_state;
     [HideInInspector] public PlayerWallrun wallrun_state;
+    [HideInInspector] public PlayerGrapplePull grapple_pull_state;
+    [HideInInspector] public PlayerGrappleSwing grapple_swing_state;
 
     private PlayerController player;
 
@@ -34,6 +36,10 @@ public class PlayerFSM : FiniteStateMachine
         states.Add(slide_state.state_name, slide_state);
         wallrun_state = new PlayerWallrun(this);
         states.Add(wallrun_state.state_name, wallrun_state);
+        grapple_pull_state = new PlayerGrapplePull(this);
+        states.Add(grapple_pull_state.state_name, grapple_pull_state);
+        grapple_swing_state = new PlayerGrappleSwing(this);
+        states.Add(grapple_swing_state.state_name, grapple_swing_state);
 
         // Set the references on all of the states
         foreach (PlayerState s in states.Values)

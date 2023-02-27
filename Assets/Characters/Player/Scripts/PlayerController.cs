@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     public float sprint_speed = 8f;
     public float crouch_speed = 3f;
     public float wallrun_speed = 10f;
+    public float grapple_pull_speed = 12f;
+    public float terminal_velocity = 14f;
     public float acceleration = 10f;
+    [HideInInspector] public bool clamp_velocity = true;
 
     [Header("Crouching")]
     public float standing_height = 2f;
@@ -47,6 +50,16 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public RaycastHit wall_hit_right;
     [HideInInspector] public RaycastHit wall_hit_left;
 
+    [Header("Grappling")]
+    public Transform grapple_firing_point;
+    public float grapple_pull_force = 300f;
+    public float max_grapple_distance = 25f;
+    public float grapple_delay_time = .3f;
+    public float grapple_cooldown = 2f;
+    public LineRenderer grapple_rope;
+    private bool can_grapple = true;
+    private Vector3 grapple_point;
+
     [Header("Drag")]
     [HideInInspector] public float drag;
     public float ground_drag {get {return 8f;}}
@@ -67,6 +80,11 @@ public class PlayerController : MonoBehaviour
     public CapsuleCollider capsule = null;
     public Rigidbody rb;
     public CameraEffects camera_fx;
+    [SerializeField] Transform eyes;
+    [SerializeField] PlayerFSM fsm;
+
+    [Header("Debug")]
+    [SerializeField] bool print_debug = false;
 
     [HideInInspector] public bool is_grounded = true;
     bool do_ground_check = true;
@@ -80,6 +98,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        fsm = GetComponent<PlayerFSM>();
 
         standing_height = capsule.height;
         drag = ground_drag;
@@ -97,7 +117,15 @@ public class PlayerController : MonoBehaviour
         rb.drag = drag;
 
         // Keep the velocity clamped
-        ClampVelocity();
+        if (clamp_velocity) ClampVelocity();
+
+        if (Input.GetButtonDown("Ability"))
+            TryGrappling();
+    }
+
+    private void LateUpdate() 
+    {
+        grapple_rope.SetPosition(0, grapple_firing_point.position);
     }
 
     public Vector2 GetMovementInput()
@@ -106,6 +134,10 @@ public class PlayerController : MonoBehaviour
         float v_movement = Input.GetAxisRaw("Vertical");
         return new Vector2(h_movement, v_movement).normalized;
     }
+
+    /// <summary>
+    ///     Basic movement logic
+    /// </summary>
 
     public void MovePlayer(float speed)
     {
@@ -215,7 +247,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Wall check logic. Called from the air and wallrun states in their update_logic()
+    /// Wallrun logic. Called from the air and wallrun states in their update_logic()
     /// </summary>
 
     public void CheckWall()
@@ -250,5 +282,59 @@ public class PlayerController : MonoBehaviour
 
         // Wallrun gravity
         rb.AddForce(Vector3.down * wallrun_gravity, ForceMode.Force);
+    }
+
+    /// <summary>
+    /// Grappling logic. Tries to grapple and switches states in the fsm if we can
+    /// </summary>
+
+    private void TryGrappling()
+    {
+        if (!can_grapple) return;
+
+        can_grapple = false;
+
+        RaycastHit hook_point;
+
+        if (Physics.Raycast(eyes.position, eyes.forward, out hook_point, max_grapple_distance, ground_mask))
+        {
+            grapple_point = hook_point.point;
+
+            Invoke(nameof(StartGrapple), grapple_delay_time);
+        }
+        else
+        {
+            grapple_point = eyes.position + eyes.forward * max_grapple_distance;
+
+            Invoke(nameof(ResetGrappling), grapple_delay_time);
+        }
+
+        grapple_rope.enabled = true;
+        grapple_rope.SetPosition(1, grapple_point);
+    }
+
+    private void StartGrapple()
+    {
+        Dictionary<string, string> _msg = new Dictionary<string, string>();
+        _msg.Add("location", JsonUtility.ToJson(grapple_point));
+        fsm.TransitionTo("Grapple Pull", _msg);
+    }
+
+    public void ResetGrappling()
+    {
+        can_grapple = true;
+
+        grapple_rope.enabled = false;
+    }
+
+    /// <summary>
+    /// Debugging stuff
+    /// </summary>
+
+    private void OnGUI()
+    {
+        if (!print_debug) return;
+        float speed = rb.velocity.magnitude;
+        GUILayout.Label($"<color='black'><size=24>Speed: {speed}</size></color>");
     }
 }
