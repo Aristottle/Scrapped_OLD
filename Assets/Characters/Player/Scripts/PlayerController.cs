@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     public float grapple_counterforce_start_distance = 5f;
     public LineRenderer grapple_rope;
     private bool can_grapple = true;
-    private Vector3 grapple_point;
+    public Vector3 grapple_point;
 
     [Header("Drag")]
     [HideInInspector] public float drag;

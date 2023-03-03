@@ -53,7 +53,7 @@ public class HeadBobController : MonoBehaviour
     private void ResetPosition()
     {
         if (_camera.localPosition == start_position) return;
-        _camera.localPosition = Vector3.Lerp(_camera.localPosition, start_position, 1 * Time.deltaTime);
+        _camera.localPosition = Vector3.Lerp(_camera.localPosition, start_position, 5 * Time.deltaTime);
     }
 
     private Vector3 FocusTarget()

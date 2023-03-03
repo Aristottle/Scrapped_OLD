@@ -49,6 +49,9 @@ public class FiniteStateMachine : MonoBehaviour
         return null;
     }
 
+    // Call to check the current state
+    public string GetCurrentState() => current_state.state_name;
+
     // Debugging
     private void OnGUI()
     {
