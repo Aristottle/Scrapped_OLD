@@ -21,6 +21,7 @@ public class PlayerGrapplePull : PlayerState
         // Apply force on the player in the direction of the target point
         Vector3 direction = (target_position - player_ref.transform.position).normalized;
         player_ref.rb.AddForce(direction * player_ref.grapple_pull_force, ForceMode.Force);
+        // player_ref.rb.velocity = direction * player_ref.grapple_pull_speed;
     }
 
     public override void Enter(Dictionary<string, string> msg = null) 
@@ -39,7 +40,10 @@ public class PlayerGrapplePull : PlayerState
             return;
         }
 
-        // player_ref.rb.velocity = Vector3.zero;
+        // Some impulse at the start adds a lot to the feel
+        Vector3 direction = (hook_location - player_ref.transform.position).normalized;
+        player_ref.rb.AddForce(direction * (player_ref.grapple_pull_force / 2), ForceMode.Impulse);
+
     }
 
     public override void UpdateLogic() 

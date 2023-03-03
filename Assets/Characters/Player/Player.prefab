@@ -960,9 +960,9 @@ MonoBehaviour:
   wall_left: 0
   wall_right: 0
   grapple_firing_point: {fileID: 125973318772074282}
-  grapple_pull_force: 300
+  grapple_pull_force: 800
   max_grapple_distance: 25
-  grapple_delay_time: 0.5
+  grapple_delay_time: 0.3
   grapple_cooldown: 2
   grapple_rope: {fileID: 7924860736256906713}
   drag: 0

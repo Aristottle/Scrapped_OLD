@@ -2255,7 +2255,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-7970
+  m_Name: pb_Mesh-1286
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36449,7 +36449,7 @@ PrefabInstance:
     - target: {fileID: 6332463260912977620, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1077
+      value: 1083
       objectReference: {fileID: 0}
     - target: {fileID: 6544153132452889680, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
@@ -36460,11 +36460,6 @@ PrefabInstance:
         type: 3}
       propertyPath: print_debug
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881224231963196582, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
-        type: 3}
-      propertyPath: grapple_pull_force
-      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 6881224231963196583, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}

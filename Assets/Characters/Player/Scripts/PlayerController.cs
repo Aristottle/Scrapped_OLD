@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public float sprint_speed = 8f;
     public float crouch_speed = 3f;
     public float wallrun_speed = 10f;
-    public float grapple_pull_speed = 12f;
-    public float terminal_velocity = 14f;
+    public float grapple_pull_speed = 16f;
+    public float terminal_velocity = 18f;
     public float acceleration = 10f;
     [HideInInspector] public bool clamp_velocity = true;
 
