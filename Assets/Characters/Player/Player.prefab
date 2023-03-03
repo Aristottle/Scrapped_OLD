@@ -50,11 +50,17 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1.5
+      - m_Value: 1.75
         m_Name: radius
         m_Overridden: 1
+      - m_Value: 0
+        m_Name: spawn_rate
+        m_Overridden: 1
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 15, y: 20}
+        m_Name: x_scale_range
+        m_Overridden: 1
     m_Vector3f:
       m_Array: []
     m_Vector4f:
@@ -726,7 +732,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: 92189e3dccdbead42af38062d7ad0e9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -763,7 +769,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008750456875944634}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -776,7 +782,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06723684ee8deb54188c4ea81448d8cf, type: 2}
+  - {fileID: 2100000, guid: 72cd3efa4702f134687bcf5851778620, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1075,7 +1081,7 @@ MonoBehaviour:
   grapple_firing_point: {fileID: 125973318772074282}
   grapple_end_tolerance: 1
   grapple_pull_force: 800
-  max_grapple_distance: 25
+  max_grapple_distance: 40
   max_grapple_time: 3
   grapple_delay_time: 0.3
   grapple_cooldown: 2
@@ -1121,6 +1127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bob_controller: {fileID: 6881224231963196584}
   camera_ref: {fileID: 6881224233742182553}
+  player: {fileID: 6881224231963196582}
+  speed_lines: {fileID: 2066883371968717064}
+  speed_lines_toggle_speed: 5.5
+  speed_lines_max_spawn_rate: 90
 --- !u!114 &6881224231963196584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,7 +1391,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
