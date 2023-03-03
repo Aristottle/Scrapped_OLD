@@ -52,10 +52,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Grappling")]
     public Transform grapple_firing_point;
+    public float grapple_end_tolerance = 1f;
     public float grapple_pull_force = 300f;
     public float max_grapple_distance = 25f;
+    public float max_grapple_time = 3f;
     public float grapple_delay_time = .3f;
     public float grapple_cooldown = 2f;
+    public float grapple_counterforce_start_distance = 5f;
     public LineRenderer grapple_rope;
     private bool can_grapple = true;
     private Vector3 grapple_point;
