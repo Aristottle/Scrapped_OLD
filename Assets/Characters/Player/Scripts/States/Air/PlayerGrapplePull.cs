@@ -22,6 +22,17 @@ public class PlayerGrapplePull : PlayerState
         Vector3 direction = (target_position - player_ref.transform.position).normalized;
         player_ref.rb.AddForce(direction * player_ref.grapple_pull_force, ForceMode.Force);
         // player_ref.rb.velocity = direction * player_ref.grapple_pull_speed;
+
+        // TODO: As the player gets closer to the destination, apply a counter force to their tangential movement so they
+        // go right to the destination. Should start at a certain distance (8m) and the effect should scale inversely to
+        // the distance. 
+        Vector3 velocity = player_ref.rb.velocity;
+        Vector3 tangential_velocity = Vector3.ProjectOnPlane(velocity, direction);
+        float distance = (target_position - player_ref.transform.position).magnitude;
+        if (distance <= 8f)
+        {
+            player_ref.rb.velocity -= tangential_velocity * (1 - distance / 8f);
+        }
     }
 
     public override void Enter(Dictionary<string, string> msg = null) 
@@ -51,7 +62,7 @@ public class PlayerGrapplePull : PlayerState
         base.UpdateLogic();
 
         if (!Input.GetButton("Ability"))
-            state_machine.TransitionTo("Idle");
+            state_machine.TransitionTo("Air");
     }
 
     public override void UpdatePhysics() 
