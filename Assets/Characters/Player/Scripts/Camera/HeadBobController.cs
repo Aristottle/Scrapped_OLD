@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeadBobController : MonoBehaviour
 {
     [Header("Head Bob")]
-    [SerializeField] bool enable = true;
+    public bool enable = true;
     [SerializeField] float amplitude = .015f;
     [SerializeField] float frequency = 10f;
     [SerializeField] Transform _camera = null;
@@ -66,7 +66,11 @@ public class HeadBobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!enable) return;
+        if (!enable) 
+        {
+            ResetPosition();
+            return;
+        }
 
         CheckMotion();
         // Stabilization

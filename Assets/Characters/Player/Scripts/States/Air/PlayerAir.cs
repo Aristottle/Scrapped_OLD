@@ -10,8 +10,6 @@ public class PlayerAir : PlayerState
 
     private void Jump()
     {
-        // Disable the ground check for a duration
-        // player_ref.PauseGroundCheck(.3f);
         // Reset y-velocity
         player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
         // Apply the jumping force to the player

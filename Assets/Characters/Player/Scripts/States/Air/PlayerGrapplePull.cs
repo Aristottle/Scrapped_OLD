@@ -94,6 +94,6 @@ public class PlayerGrapplePull : PlayerState
 
         player_ref.camera_fx.OffsetFOV(-fov_offset);
 
-        player_ref.ResetGrappling();
+        player_ref.Invoke(nameof(player_ref.ResetGrappling), player_ref.grapple_cooldown);
     }
 }

@@ -39,7 +39,7 @@ public class CameraEffects : MonoBehaviour
 
     public void ToggleHeadBob(bool enable)
     {
-        bob_controller.enabled = enable;
+        bob_controller.enable = enable;
     }
 
     public void SetHeadBobMultipliers(float amp_multiplier = 1f, float freq_multiplier = 1f)
