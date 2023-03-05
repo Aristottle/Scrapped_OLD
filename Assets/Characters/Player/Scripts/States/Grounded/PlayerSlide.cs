@@ -39,7 +39,9 @@ public class PlayerSlide : PlayerGrounded
         if (player_ref.rb.velocity.magnitude < player_ref.walk_speed)
         {
             if (player_ref.GetMovementInput().y >= .5f && Input.GetButton("Sprint") && player_ref.CanStand())
+            {
                 state_machine.TransitionTo("Sprint");
+            }
             else
             {
                 stay_crouched = true;

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public float standing_height = 2f;
     public float crouch_height = 1f;
     private float crouch_position_offset = 0.5f;
+    private bool is_crouching;
 
     [Header("Sliding")]
     public float slide_impulse = 300f;
@@ -221,17 +222,23 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch()
     {
-        // PauseGroundCheck(0.3f);
+        if (is_crouching) return;
+        
         capsule.height = crouch_height;
         transform.position = new Vector3(transform.position.x, transform.position.y - crouch_position_offset, transform.position.z);
         rb.AddForce(-transform.up * 300f, ForceMode.Impulse);
+
+        is_crouching = true;
     }
 
     public void Stand()
     {
+        if (!is_crouching) return;
+        
         capsule.height = standing_height;
         transform.position = new Vector3(transform.position.x, transform.position.y + crouch_position_offset, transform.position.z);
-        // PauseGroundCheck(0.3f);
+        
+        is_crouching = false;
     }
 
     public bool CanStand()

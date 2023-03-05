@@ -36508,12 +36508,12 @@ PrefabInstance:
     - target: {fileID: 6881224231963196582, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: print_debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6881224231963196583, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: print_debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881224233076520678, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
