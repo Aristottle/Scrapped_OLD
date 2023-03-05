@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 6544153132452889680}
   - component: {fileID: 7924860736256906713}
   - component: {fileID: 4238605452867023506}
+  - component: {fileID: 2947873682269268388}
   m_Layer: 0
   m_Name: GrapplingHook
   m_TagString: Untagged
@@ -770,7 +771,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008750456875944634}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -876,6 +877,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6881224231963196582}
   player_fsm: {fileID: 6881224231963196583}
+--- !u!114 &2947873682269268388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008750456875944634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0218061c8bddf9b4591140a77c30f0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6881224231963196582}
+  quality: 500
+  damper: 14
+  strength: 800
+  velocity: 15
+  wave_count: 3
+  wave_height: 2
+  affect_curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.3206157
+      outSlope: 0.3206157
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07029582
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5448767498948902347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1143,7 @@ MonoBehaviour:
   max_grapple_distance: 40
   max_grapple_time: 3
   grapple_delay_time: 0.3
-  grapple_cooldown: 2
+  grapple_cooldown: 1.5
   grapple_counterforce_start_distance: 5
   grapple_rope: {fileID: 7924860736256906713}
   grapple_point: {x: 0, y: 0, z: 0}

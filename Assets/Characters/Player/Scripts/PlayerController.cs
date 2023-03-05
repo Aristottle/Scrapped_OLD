@@ -61,9 +61,10 @@ public class PlayerController : MonoBehaviour
     public float grapple_delay_time = .3f;
     public float grapple_cooldown = 2f;
     public float grapple_counterforce_start_distance = 5f;
-    public LineRenderer grapple_rope;
+    public GrapplingRope grapple_rope;
     private bool can_grapple = true;
     public Vector3 grapple_point;
+    private bool is_grappling = false;
 
     [Header("Drag")]
     [HideInInspector] public float drag;
@@ -129,11 +130,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Ability"))
             TryGrappling();
-    }
-
-    private void LateUpdate() 
-    {
-        grapple_rope.SetPosition(0, grapple_firing_point.position);
     }
 
     public Vector2 GetMovementInput()
@@ -234,7 +230,7 @@ public class PlayerController : MonoBehaviour
     public void Stand()
     {
         if (!is_crouching) return;
-        
+
         capsule.height = standing_height;
         transform.position = new Vector3(transform.position.x, transform.position.y + crouch_position_offset, transform.position.z);
         
@@ -250,7 +246,6 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Ground check control
     /// </summary>
-    /// <param name="duration"></param>
 
     public void PauseGroundCheck(float duration)
     {
@@ -326,8 +321,7 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(ResetGrappling), grapple_delay_time);
         }
 
-        grapple_rope.enabled = true;
-        grapple_rope.SetPosition(1, grapple_point);
+        is_grappling = true;
     }
 
     private void StartGrapple()
@@ -340,9 +334,12 @@ public class PlayerController : MonoBehaviour
     public void ResetGrappling()
     {
         can_grapple = true;
-
-        grapple_rope.enabled = false;
+        is_grappling = false;
     }
+
+    public bool IsGrappling() { return is_grappling; }
+
+    public void HideRope() { is_grappling = false; }
 
     /// <summary>
     /// Debugging stuff

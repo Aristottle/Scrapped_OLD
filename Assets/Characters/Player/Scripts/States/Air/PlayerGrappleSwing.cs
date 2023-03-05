@@ -24,5 +24,7 @@ public class PlayerGrappleSwing : PlayerState
     public override void Exit() 
     {
         base.Exit();
+
+        player_ref.HideRope();
     }
 }

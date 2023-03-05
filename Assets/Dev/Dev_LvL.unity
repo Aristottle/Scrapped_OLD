@@ -36498,7 +36498,7 @@ PrefabInstance:
     - target: {fileID: 6332463260912977620, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1245
+      value: 1293
       objectReference: {fileID: 0}
     - target: {fileID: 6544153132452889680, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
@@ -36509,11 +36509,6 @@ PrefabInstance:
         type: 3}
       propertyPath: print_debug
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881224231963196583, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
-        type: 3}
-      propertyPath: print_debug
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881224233076520678, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
@@ -36578,7 +36573,12 @@ PrefabInstance:
     - target: {fileID: 7924860736256906713, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924860736256906713, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dddbb9effe3c2b4e80ec762ca23595d, type: 3}
