@@ -62,6 +62,11 @@ public class PlayerAir : PlayerState
     public override void UpdatePhysics() 
     {
         base.UpdatePhysics();
+
+        // Apply more gravity as we're falling
+        if (player_ref.rb.velocity.y < 0f && player_ref.rb.velocity.y > -player_ref.terminal_velocity)
+            player_ref.rb.velocity += Vector3.up * Physics.gravity.y * (player_ref.fall_multiplier - 1) * Time.fixedDeltaTime;
+
         player_ref.MovePlayer(player_ref.desired_speed);
     }
 

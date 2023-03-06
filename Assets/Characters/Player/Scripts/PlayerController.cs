@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float air_control = 0.1f;
     public float jump_force = 500f;
     public float jump_cooldown = .2f;
+    public float fall_multiplier = 2.5f;
 
     [Header("Speeds")]
     private float movement_speed;
