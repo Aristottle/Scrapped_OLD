@@ -893,9 +893,9 @@ MonoBehaviour:
   quality: 500
   damper: 14
   strength: 800
-  velocity: 15
+  velocity: 10
   wave_count: 3
-  wave_height: 2
+  wave_height: 6
   affect_curve:
     serializedVersion: 2
     m_Curve:
@@ -1128,9 +1128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   air_control: 0.1
-  jump_force: 300
+  jump_force: 350
   jump_cooldown: 0.2
-  fall_multiplier: 2.5
+  fall_multiplier: 1.25
   desired_speed: 0
   walk_speed: 4
   sprint_speed: 6
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   grapple_firing_point: {fileID: 125973318772074282}
   grapple_end_tolerance: 1
   grapple_pull_force: 800
-  max_grapple_distance: 40
+  max_grapple_distance: 25
   max_grapple_time: 3
   grapple_delay_time: 0.3
   grapple_cooldown: 1.5

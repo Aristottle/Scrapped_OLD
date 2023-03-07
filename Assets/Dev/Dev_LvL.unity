@@ -13704,7 +13704,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1296
+  m_Name: pb_Mesh-1288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -79047,7 +79047,7 @@ PrefabInstance:
     - target: {fileID: 6332463260912977620, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1317
+      value: 1335
       objectReference: {fileID: 0}
     - target: {fileID: 6544153132452889680, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
@@ -79056,18 +79056,8 @@ PrefabInstance:
       objectReference: {fileID: 578408648}
     - target: {fileID: 6881224231963196582, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
-      propertyPath: jump_force
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881224231963196582, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
-        type: 3}
       propertyPath: print_debug
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881224231963196582, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
-        type: 3}
-      propertyPath: fall_multiplier
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6881224233076520678, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
