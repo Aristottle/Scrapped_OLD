@@ -621,11 +621,11 @@ MonoBehaviour:
   fall_multiplier: 1.25
   desired_speed: 0
   walk_speed: 4
-  sprint_speed: 6
+  sprint_speed: 8
   crouch_speed: 2
-  wallrun_speed: 8
-  grapple_pull_speed: 12
-  terminal_velocity: 14
+  wallrun_speed: 12
+  grapple_pull_speed: 14
+  terminal_velocity: 16
   acceleration: 10
   clamp_velocity: 1
   standing_height: 2

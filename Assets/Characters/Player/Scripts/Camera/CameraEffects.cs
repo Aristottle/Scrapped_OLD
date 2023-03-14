@@ -71,6 +71,7 @@ public class CameraEffects : MonoBehaviour
         float desired_alpha = Mathf.Clamp((player.rb.velocity.magnitude / player.terminal_velocity) - (speed_lines_toggle_speed / player.terminal_velocity), 0, 1);
         speed_lines_alpha = Mathf.Lerp(speed_lines_alpha, desired_alpha, Time.deltaTime * 5f);
 
+        // Set the spawn rate of the 
         speed_lines.SetFloat(Shader.PropertyToID("spawn_rate"), speed_lines_alpha * speed_lines_max_spawn_rate);
     }
 }
