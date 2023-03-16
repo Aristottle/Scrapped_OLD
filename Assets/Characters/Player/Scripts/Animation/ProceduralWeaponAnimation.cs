@@ -57,7 +57,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
         // Calculate target rotation
         Quaternion yaw_offset = Quaternion.AngleAxis(rotation_intensity * -look_input.x, Vector3.up);
         Quaternion pitch_offset = Quaternion.AngleAxis(rotation_intensity * look_input.y, Vector3.right);
-        Quaternion roll_offset = Quaternion.AngleAxis(Mathf.Clamp(rotation_intensity * 2f * -look_input.x, 0f, max_tilt), Vector3.forward);
+        Quaternion roll_offset = Quaternion.AngleAxis(Mathf.Clamp(rotation_intensity * 3f * -look_input.x, 0f, max_tilt), Vector3.forward);
         Quaternion target_rotation = origin_rotation * yaw_offset * pitch_offset * roll_offset;
 
         // Rotate to target rotation

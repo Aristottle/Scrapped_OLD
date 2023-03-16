@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ShootingRangeTarget : MonoBehaviour, IDamageable
 {
+    private float health = 100f;
+
     void IDamageable.Damage(float amount)
     {
+        health -= amount;
+
         Debug.Log($"Hit target for {amount}. Ouch!");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         
+        OnDamaged();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void OnDamaged()
     {
-        
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

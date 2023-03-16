@@ -16,8 +16,14 @@ MonoBehaviour:
   base_damage: 40
   crit_multi: 1.5
   max_range: 50
-  curr_ammo: 6
+  spread: 0.25
+  camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
+  curr_ammo: 3
   mag_size: 6
-  fire_rate: 150
+  fire_rate: 240
   reload_time: 1.5
   is_reloading: 0
+  fire_sfx: {fileID: 8300000, guid: b2d159f7e00d44d9bbc2d50a0c4fef59, type: 3}
+  reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
+  equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
+  unequip_sfx: {fileID: 0}

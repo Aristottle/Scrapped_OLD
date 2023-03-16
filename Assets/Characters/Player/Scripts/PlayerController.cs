@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     public CapsuleCollider capsule = null;
     public Rigidbody rb;
     public CameraEffects camera_fx;
-    [SerializeField] Transform eyes;
+    public Transform eyes;
     [SerializeField] PlayerFSM fsm;
 
     [Header("Debug")]

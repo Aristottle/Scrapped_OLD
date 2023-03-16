@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using DG.Tweening;
+using MilkShake;
 
 /// <summary>
 /// This class manages all of the camera effects. Headbob, tilt, fov, shake, etc.
@@ -18,6 +19,8 @@ public class CameraEffects : MonoBehaviour
     [SerializeField] VisualEffect speed_lines;
     [SerializeField] float speed_lines_toggle_speed = 5.5f;
     [SerializeField] float speed_lines_max_spawn_rate = 100;
+    [Header("Shake")]
+    public Shaker camera_shaker;
 
     float base_fov;
 
