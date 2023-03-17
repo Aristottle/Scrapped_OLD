@@ -5,7 +5,7 @@ using MilkShake;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] WeaponData data;
+    public WeaponData data;
     [SerializeField] Transform muzzle;
     [SerializeField] PlayerController wielder;
 
