@@ -11,9 +11,13 @@ using MilkShake;
 
 public class CameraEffects : MonoBehaviour
 {
+
+    #region Variables
+
     [Header("References")]
     [SerializeField] HeadBobController bob_controller;
     [SerializeField] Camera camera_ref;
+    [SerializeField] Transform camera_pivot;
     [SerializeField] PlayerController player;
     [Header("Speed Lines")]
     [SerializeField] VisualEffect speed_lines;
@@ -26,6 +30,11 @@ public class CameraEffects : MonoBehaviour
 
     float speed_lines_alpha = 0;
 
+    #endregion
+
+
+    #region Mono Callbacks
+
     private void Start() 
     {
         base_fov = camera_ref.fieldOfView;
@@ -36,13 +45,14 @@ public class CameraEffects : MonoBehaviour
         HandleSpeedLines();
     }
 
-    /// <summary>
-    ///     HEAD BOB
-    /// </summary>
+    #endregion
+
+
+    #region HeadBob
 
     public void ToggleHeadBob(bool enable)
     {
-        bob_controller.enable = enable;
+        bob_controller.active = enable;
     }
 
     public void SetHeadBobMultipliers(float amp_multiplier = 1f, float freq_multiplier = 1f)
@@ -51,13 +61,14 @@ public class CameraEffects : MonoBehaviour
         bob_controller.freq_multiplier = freq_multiplier;
     }
 
-    /// <summary>
-    ///     CAMERA TILT AND FOV
-    /// </summary>
+    #endregion
+
+
+    #region Tilt/FOV
 
     public void TiltCamera(float tilt, float time = .3f)
     {
-        // camera_ref.transform.DOLocalRotate(new Vector3(0, 0, tilt), time);
+        camera_pivot.DOLocalRotate(new Vector3(0, 0, tilt), time);
     }
 
     public void OffsetFOV(float offset, float time = .3f)
@@ -65,9 +76,10 @@ public class CameraEffects : MonoBehaviour
         camera_ref.DOFieldOfView(base_fov + offset, time);
     }
 
-    /// <summary>
-    ///     SPEED LINES
-    /// </summary>
+    #endregion
+
+    
+    #region Speedlines
 
     private void HandleSpeedLines()
     {
@@ -77,4 +89,7 @@ public class CameraEffects : MonoBehaviour
         // Set the spawn rate of the 
         speed_lines.SetFloat(Shader.PropertyToID("spawn_rate"), speed_lines_alpha * speed_lines_max_spawn_rate);
     }
+
+    #endregion
+
 }

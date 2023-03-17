@@ -17,6 +17,8 @@ public class PlayerWallrun : PlayerState
 
         player_ref.drag = player_ref.wallrun_drag;
 
+        player_ref.is_wallrunning = true;
+
         player_ref.desired_speed = player_ref.wallrun_speed;
 
         player_ref.camera_fx.ToggleHeadBob(true);
@@ -26,7 +28,8 @@ public class PlayerWallrun : PlayerState
             player_ref.rb.velocity = new Vector3(player_ref.rb.velocity.x, 0f, player_ref.rb.velocity.z);
 
         // Tilt camera
-        player_ref.camera_fx.TiltCamera(player_ref.wall_right ? tilt_amount : tilt_amount * -1);
+        float amount = player_ref.wall_right ? tilt_amount : tilt_amount * -1;
+        player_ref.camera_fx.TiltCamera(amount);
         // Apply fov change
         player_ref.camera_fx.OffsetFOV(fov_offset);
 
@@ -70,6 +73,8 @@ public class PlayerWallrun : PlayerState
     public override void Exit() 
     {
         base.Exit();
+
+        player_ref.is_wallrunning = false;
 
         player_ref.rb.useGravity = true;
 

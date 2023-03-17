@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
         as a sort of repository for all of the player's parameters.
     */
 
+    #region Variables
+
     [Header("Control")]
     public float air_control = 0.1f;
     public float jump_force = 500f;
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool wall_right = false;
     [HideInInspector] public RaycastHit wall_hit_right;
     [HideInInspector] public RaycastHit wall_hit_left;
+    [HideInInspector] public bool is_wallrunning;
 
     [Header("Grappling")]
     public Transform grapple_firing_point;
@@ -100,6 +103,10 @@ public class PlayerController : MonoBehaviour
 
     float base_fov;
 
+    #endregion
+
+
+    #region Monobehaviour Callbacks
 
     private void Start() 
     {
@@ -133,6 +140,11 @@ public class PlayerController : MonoBehaviour
             TryGrappling();
     }
 
+    #endregion
+
+
+    #region Input
+
     public Vector2 GetMovementInput()
     {
         float h_movement = Input.GetAxisRaw("Horizontal");
@@ -140,9 +152,10 @@ public class PlayerController : MonoBehaviour
         return new Vector2(h_movement, v_movement).normalized;
     }
 
-    /// <summary>
-    ///     Basic movement logic
-    /// </summary>
+    #endregion
+
+    
+    #region Movement Logic
 
     public void MovePlayer(float speed)
     {
@@ -193,11 +206,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Slope Handling
-    /// </summary>
-    /// <returns></returns>
-
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slope_hit, capsule.height / 2f + ground_check_radius))
@@ -213,9 +221,10 @@ public class PlayerController : MonoBehaviour
         return Vector3.ProjectOnPlane(movement_direction, slope_hit.normal).normalized;
     }
 
-    /// <summary>
-    /// Crouching logic
-    /// </summary>
+    #endregion
+
+    
+    #region Crouching logic
 
     public void Crouch()
     {
@@ -244,9 +253,10 @@ public class PlayerController : MonoBehaviour
         return !Physics.CheckSphere(pos, capsule.radius, ground_mask);
     }
 
-    /// <summary>
-    /// Ground check control
-    /// </summary>
+    #endregion
+    
+
+    #region Ground Check
 
     public void PauseGroundCheck(float duration)
     {
@@ -259,9 +269,10 @@ public class PlayerController : MonoBehaviour
         do_ground_check = true;
     }
 
-    /// <summary>
-    /// Wallrun logic. Called from the air and wallrun states in their update_logic()
-    /// </summary>
+    #endregion
+
+
+    #region Wallrunning
 
     public void CheckWall()
     {
@@ -297,9 +308,10 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(Vector3.down * wallrun_gravity, ForceMode.Force);
     }
 
-    /// <summary>
-    /// Grappling logic. Tries to grapple and switches states in the fsm if we can
-    /// </summary>
+    #endregion
+
+    
+    #region Grappling
 
     private void TryGrappling()
     {
@@ -342,9 +354,10 @@ public class PlayerController : MonoBehaviour
 
     public void HideRope() { is_grappling = false; }
 
-    /// <summary>
-    /// Debugging stuff
-    /// </summary>
+    #endregion
+
+    
+    #region Debug
 
     private void OnGUI()
     {
@@ -352,4 +365,6 @@ public class PlayerController : MonoBehaviour
         float speed = rb.velocity.magnitude;
         GUILayout.Label($"<color='black'><size=24>Speed: {speed}</size></color>");
     }
+
+    #endregion
 }

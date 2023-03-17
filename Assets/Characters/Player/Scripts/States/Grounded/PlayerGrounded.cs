@@ -10,7 +10,7 @@ public class PlayerGrounded : PlayerState
     {
         base.Enter();
 
-        player_ref.camera_fx.TiltCamera(0f, .1f);
+        // player_ref.camera_fx.TiltCamera(0f, .1f);
 
         player_ref.camera_fx.ToggleHeadBob(true);
     }

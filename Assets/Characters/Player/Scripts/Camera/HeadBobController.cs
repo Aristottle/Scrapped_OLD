@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class HeadBobController : MonoBehaviour
 {
+
+    #region Variables
+
     [Header("Head Bob")]
-    public bool enable = true;
+    public bool active = true;
     [SerializeField] float amplitude = .015f;
     [SerializeField] float frequency = 10f;
     [SerializeField] Transform _camera = null;
@@ -17,16 +20,36 @@ public class HeadBobController : MonoBehaviour
     private float toggle_speed = 1.25f;
     private Vector3 start_position;
     private Rigidbody rb;
-    private Transform camera_clone;
+
+    #endregion
+
+
+    #region MonoBehaviour Callbacks
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         start_position = _camera.localPosition;
     }
 
-    private void Start() {
-        camera_clone = _camera;
+    // Update is called once per frame
+    void Update()
+    {
+        if (!active) 
+        {
+            ResetPosition();
+            return;
+        }
+
+        CheckMotion();
+        // Stabilization
+        // Vector3 stabilized_rotation = Quaternion.LookRotation((FocusTarget() - _camera.position).normalized, Vector3.up).eulerAngles;
+        // _camera.localRotation = Quaternion.Euler(stabilized_rotation.x, stabilized_rotation.y, _camera.localEulerAngles.z);
     }
+
+    #endregion
+
+
+    #region Private Methods
 
     private void CheckMotion()
     {
@@ -63,19 +86,6 @@ public class HeadBobController : MonoBehaviour
         return pos;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!enable) 
-        {
-            ResetPosition();
-            return;
-        }
+    #endregion
 
-        CheckMotion();
-        // Stabilization
-        camera_clone = _camera;
-        camera_clone.LookAt(FocusTarget());
-        _camera.localRotation = Quaternion.Euler(camera_clone.localEulerAngles.x, camera_clone.localEulerAngles.y, _camera.localEulerAngles.z);
-    }
 }
