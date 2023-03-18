@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingRangeTarget : MonoBehaviour, IDamageable
 {
-    private float health = 100f;
+    private float health = 1;
 
     void IDamageable.Damage(float amount)
     {

@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MilkShake;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
+
+    #region Variables
+
     public WeaponData data;
     [SerializeField] Transform muzzle;
     [SerializeField] PlayerController wielder;
+    [SerializeField] VisualEffect muzzle_flash;
 
     Shaker camera_shaker;
     AudioSource sfx_source;
@@ -15,6 +20,11 @@ public class Gun : MonoBehaviour
     Transform aim_transform;
 
     [SerializeField] bool show_debug = false;
+
+    #endregion
+
+
+    #region Mono Callbacks
 
     private void Awake()
     {
@@ -41,13 +51,47 @@ public class Gun : MonoBehaviour
         time_since_last_shot += Time.deltaTime;
     }
 
+    #endregion
+
+
+    #region Private Methods
+
     private bool CanFire() => !data.is_reloading && time_since_last_shot > 1f / (data.fire_rate / 60f);
+
+    private void OnFired()
+    {
+        camera_shaker?.Shake(data.camera_shake);
+
+        // Play the fire sound effect
+        sfx_source.PlayOneShot(data.fire_sfx);
+
+        // Particle
+        muzzle_flash.Play();
+
+        return;
+    }
+
+    private IEnumerator Reload() {
+        data.is_reloading = true;
+
+        yield return new WaitForSeconds(data.reload_time);
+
+        data.curr_ammo = data.mag_size;
+
+        data.is_reloading = false;
+    }
+
+    #endregion
+
+
+    #region Public Methods
 
     public void Fire()
     {
         // Missfire
         if (data.curr_ammo == 0)
         {
+            sfx_source.PlayOneShot(data.click_sfx, .6f);
             return;
         }
         // Can fire?
@@ -76,16 +120,6 @@ public class Gun : MonoBehaviour
         OnFired();
     }
 
-    private void OnFired()
-    {
-        camera_shaker?.Shake(data.camera_shake);
-
-        // Play the fire sound effect
-        sfx_source.PlayOneShot(data.fire_sfx);
-
-        return;
-    }
-
     public void StartReload()
     {
         if (data.is_reloading || data.curr_ammo == data.mag_size)
@@ -94,16 +128,9 @@ public class Gun : MonoBehaviour
         StartCoroutine(Reload());
 
         // Play the reload sfx
-        sfx_source.PlayOneShot(data.reload_sfx);
+        sfx_source.PlayOneShot(data.reload_sfx, .6f);
     }
 
-    private IEnumerator Reload() {
-        data.is_reloading = true;
+    #endregion
 
-        yield return new WaitForSeconds(data.reload_time);
-
-        data.curr_ammo = data.mag_size;
-
-        data.is_reloading = false;
-    }
 }

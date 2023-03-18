@@ -27,3 +27,4 @@ MonoBehaviour:
   reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
   unequip_sfx: {fileID: 0}
+  click_sfx: {fileID: 8300000, guid: cf8af97bd29c01846a4dcb045c7d810a, type: 3}

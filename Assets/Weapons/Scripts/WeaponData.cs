@@ -28,4 +28,5 @@ public class WeaponData : ScriptableObject
     public AudioClip reload_sfx;
     public AudioClip equip_sfx;
     public AudioClip unequip_sfx;
+    public AudioClip click_sfx;
 }

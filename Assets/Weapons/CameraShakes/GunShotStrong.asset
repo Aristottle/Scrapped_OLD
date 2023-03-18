@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunShotStrong
   m_EditorClassIdentifier: 
   shakeType: 0
-  strength: 0.05
+  strength: 0.1
   roughness: 20
   fadeIn: 0.05
   fadeOut: 0.2
