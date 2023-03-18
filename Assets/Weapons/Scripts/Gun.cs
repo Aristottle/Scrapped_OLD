@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
     AudioSource sfx_source;
     float time_since_last_shot;
     Transform aim_transform;
+    ProceduralRecoil recoil;
 
     [SerializeField] bool show_debug = false;
 
@@ -42,6 +43,8 @@ public class Gun : MonoBehaviour
         camera_shaker = wielder.camera_fx.camera_shaker;
         sfx_source = GetComponent<AudioSource>();
 
+        recoil = GetComponent<ProceduralRecoil>();
+
         // Play the equip sfx
         sfx_source.PlayOneShot(data.equip_sfx);
     }
@@ -60,13 +63,16 @@ public class Gun : MonoBehaviour
 
     private void OnFired()
     {
+        // Particle
+        muzzle_flash.Play();
+
         camera_shaker?.Shake(data.camera_shake);
 
         // Play the fire sound effect
         sfx_source.PlayOneShot(data.fire_sfx);
 
-        // Particle
-        muzzle_flash.Play();
+        // Apply recoil
+        recoil?.AddRecoil();
 
         return;
     }
@@ -88,16 +94,17 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
+        // Can fire?
+        if (!CanFire())
+            return;
+
         // Missfire
         if (data.curr_ammo == 0)
         {
             sfx_source.PlayOneShot(data.click_sfx, .6f);
             return;
         }
-        // Can fire?
-        if (!CanFire())
-            return;
-
+        
         // Ok, we can fire.
         // Calculate spread
         float spread = data.spread / 10;

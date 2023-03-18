@@ -16,6 +16,12 @@ public class WeaponData : ScriptableObject
     public float spread = .5f;
     public MilkShake.ShakePreset camera_shake;
 
+    [Header("Recoil")]
+    public Vector3 recoil_amount = new Vector3(-2, 2, 6);
+    public float kickback = .2f;
+    public float recoil_strength = 5;
+    public float return_strength = 8;
+
     [Header("Ammo / Reloading")]
     public int curr_ammo;
     public int mag_size;

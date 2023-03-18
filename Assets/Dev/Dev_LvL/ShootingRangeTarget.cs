@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingRangeTarget : MonoBehaviour, IDamageable
 {
     private float health = 1;
+    [HideInInspector] public bool destroyed = false;
 
     void IDamageable.Damage(float amount)
     {
@@ -18,6 +19,20 @@ public class ShootingRangeTarget : MonoBehaviour, IDamageable
     void OnDamaged()
     {
         if (health <= 0)
-            Destroy(gameObject);
+            ToggleHidden(true);
+    }
+
+    public void ToggleHidden(bool hidden = true)
+    {
+        destroyed = hidden;
+        if (destroyed)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            health = 1;
+            gameObject.SetActive(true);
+        }
     }
 }
