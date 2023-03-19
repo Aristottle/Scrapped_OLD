@@ -9,17 +9,26 @@ public class Gun : MonoBehaviour
 
     #region Variables
 
+    [Header("References")]
     public WeaponData data;
     [SerializeField] Transform muzzle;
     [SerializeField] PlayerController wielder;
     [SerializeField] VisualEffect muzzle_flash;
-
     Shaker camera_shaker;
     AudioSource sfx_source;
-    float time_since_last_shot;
     Transform aim_transform;
     ProceduralRecoil recoil;
 
+    [Header("Runtime Data")]
+    bool reloading = false;
+
+    [Header("Control")]
+    // This is essentially an input buffer for shooting
+    [SerializeField] float input_buffer_duration = .1f;
+    bool fire_queued = false;
+    float time_since_last_shot;
+
+    [Header("Debug")]
     [SerializeField] bool show_debug = false;
 
     #endregion
@@ -52,6 +61,17 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         time_since_last_shot += Time.deltaTime;
+
+        if (fire_queued && CanFire())
+        {
+            Fire();
+        }
+    }
+
+    private void OnDestroy() 
+    {
+        InputHandler.primary_input -= Fire;
+        InputHandler.reload_input -= StartReload;
     }
 
     #endregion
@@ -59,7 +79,7 @@ public class Gun : MonoBehaviour
 
     #region Private Methods
 
-    private bool CanFire() => !data.is_reloading && time_since_last_shot > 1f / (data.fire_rate / 60f);
+    private bool CanFire() => !reloading && time_since_last_shot > 1f / (data.fire_rate / 60f);
 
     private void OnFired()
     {
@@ -78,13 +98,19 @@ public class Gun : MonoBehaviour
     }
 
     private IEnumerator Reload() {
-        data.is_reloading = true;
+        reloading = true;
 
         yield return new WaitForSeconds(data.reload_time);
 
         data.curr_ammo = data.mag_size;
 
-        data.is_reloading = false;
+        reloading = false;
+    }
+
+    private void CancelQueuedShot()
+    {
+        fire_queued = false;
+        return;
     }
 
     #endregion
@@ -92,11 +118,23 @@ public class Gun : MonoBehaviour
 
     #region Public Methods
 
+    public void Init(PlayerController w)
+    {
+        wielder = w;
+
+        GetComponent<ProceduralWeaponAnimation>()?.Init(w);
+    }
+
     public void Fire()
     {
         // Can fire?
         if (!CanFire())
+        {
+            // Queue a shot
+            fire_queued = true;
+            Invoke(nameof(CancelQueuedShot), input_buffer_duration);
             return;
+        }
 
         // Missfire
         if (data.curr_ammo == 0)
@@ -104,8 +142,10 @@ public class Gun : MonoBehaviour
             sfx_source.PlayOneShot(data.click_sfx, .6f);
             return;
         }
-        
+       
         // Ok, we can fire.
+        fire_queued = false;
+        CancelInvoke(nameof(CancelQueuedShot));
         // Calculate spread
         float spread = data.spread / 10;
         Vector2 spread_area = new Vector2(Random.Range(-spread, spread), Random.Range(-spread, spread));
@@ -129,7 +169,7 @@ public class Gun : MonoBehaviour
 
     public void StartReload()
     {
-        if (data.is_reloading || data.curr_ammo == data.mag_size)
+        if (reloading || data.curr_ammo == data.mag_size)
             return;
 
         StartCoroutine(Reload());

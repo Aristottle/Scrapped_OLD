@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: MG_Stallion
   m_EditorClassIdentifier: 
   weapon_name: MG ST4LL10N
+  prefab: {fileID: 856057890735161329, guid: e1f39b844f2c6e242af18607f158218f, type: 3}
   base_damage: 40
   crit_multi: 1.5
   max_range: 50
   spread: 0.25
   camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
+  requires_two_hands: 0
+  ads_speed: 0.3
   recoil_amount: {x: -20, y: 5, z: 5}
   kickback: 0.15
   recoil_strength: 5

@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
 {
     [Header("Info")]
     public string weapon_name;
+    public GameObject prefab;
 
     [Header("Firing")]
     public float base_damage = 25;
@@ -15,6 +16,10 @@ public class WeaponData : ScriptableObject
     public float max_range = 100f;
     public float spread = .5f;
     public MilkShake.ShakePreset camera_shake;
+
+    [Header("Handling")]
+    public bool requires_two_hands = true;
+    public float ads_speed = .3f;
 
     [Header("Recoil")]
     public Vector3 recoil_amount = new Vector3(-2, 2, 6);
@@ -27,7 +32,6 @@ public class WeaponData : ScriptableObject
     public int mag_size;
     public float fire_rate;
     public float reload_time;
-    [HideInInspector] public bool is_reloading;
 
     [Header("SFX")]
     public AudioClip fire_sfx;

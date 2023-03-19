@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHUD : MonoBehaviour
 {
-    public Gun weapon_ref;
+    [HideInInspector] public Gun weapon_ref;
     public TMPro.TextMeshProUGUI ammo_text;
     public TMPro.TextMeshProUGUI speed_text;
     public Rigidbody rb_ref;
@@ -13,9 +13,12 @@ public class PlayerHUD : MonoBehaviour
     void Update()
     {
         // Ammo
-        int max = weapon_ref.data.mag_size;
-        int current = weapon_ref.data.curr_ammo;
-        ammo_text.text = $"{current} / {max}";
+        if (weapon_ref != null)
+        {
+            int max = weapon_ref.data.mag_size;
+            int current = weapon_ref.data.curr_ammo;
+            ammo_text.text = $"{current} / {max}";
+        }
 
         // Calc the speed
         Vector2 flat_speed = new Vector2(rb_ref.velocity.x, rb_ref.velocity.z);

@@ -120,4 +120,15 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     }
 
     #endregion
+
+
+    #region Public Methods
+
+    public void Init(PlayerController p)
+    {
+        player = p;
+    }
+
+    #endregion
+
 }
