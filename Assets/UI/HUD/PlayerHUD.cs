@@ -16,7 +16,7 @@ public class PlayerHUD : MonoBehaviour
         if (weapon_ref != null)
         {
             int max = weapon_ref.data.mag_size;
-            int current = weapon_ref.data.curr_ammo;
+            int current = weapon_ref.curr_ammo;
             ammo_text.text = $"{current} / {max}";
         }
 

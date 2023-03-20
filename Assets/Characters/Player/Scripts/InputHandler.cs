@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
 
     public static Action primary_input;
     public static Action reload_input;
+    public static Action alternate_input;
 
     [Header("Debugging")]
     [SerializeField] WeaponManager weapon_manager;
@@ -27,6 +28,10 @@ public class InputHandler : MonoBehaviour
         // Shoot Input
         if (Input.GetButtonDown("Primary Action"))
             primary_input?.Invoke();
+        
+        // ADS Input
+        if (Input.GetButtonDown("Alternate Action"))
+            alternate_input?.Invoke();
 
         // Reload Input
         if (Input.GetButtonDown("Reload"))

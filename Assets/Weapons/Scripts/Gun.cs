@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
 
     [Header("Runtime Data")]
     bool reloading = false;
+    public int curr_ammo {get; private set;} = 0;
 
     [Header("Control")]
     // This is essentially an input buffer for shooting
@@ -39,20 +40,29 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         // Top off at game start
-        data.curr_ammo = data.mag_size;
+        curr_ammo = data.mag_size;
     }
 
     private void Start()
     {
+        // Bind actions
         InputHandler.primary_input += Fire;
         InputHandler.reload_input += StartReload;
 
+        // Get references
         aim_transform = wielder.eyes;
-
         camera_shaker = wielder.camera_fx.camera_shaker;
         sfx_source = GetComponent<AudioSource>();
 
+        // Initialize recoil
         recoil = GetComponent<ProceduralRecoil>();
+
+        // Initialize the procedural animation controller
+        ProceduralWeaponAnimation weapon_anims = GetComponent<ProceduralWeaponAnimation>();
+        weapon_anims?.Init(wielder);
+
+        // Initialize ADS. Have to do it here because we need the transform component to be initialized.
+        GetComponent<ProceduralADS>()?.Init(data.ads_speed, data.ads_forward_offset, transform, aim_transform, weapon_anims);
 
         // Play the equip sfx
         sfx_source.PlayOneShot(data.equip_sfx);
@@ -102,7 +112,11 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(data.reload_time);
 
-        data.curr_ammo = data.mag_size;
+        int new_ammo_count = data.mag_size;
+        if (curr_ammo > 0 && data.can_chamber)
+            new_ammo_count += 1;
+
+        curr_ammo = new_ammo_count;
 
         reloading = false;
     }
@@ -121,8 +135,6 @@ public class Gun : MonoBehaviour
     public void Init(PlayerController w)
     {
         wielder = w;
-
-        GetComponent<ProceduralWeaponAnimation>()?.Init(w);
     }
 
     public void Fire()
@@ -136,16 +148,17 @@ public class Gun : MonoBehaviour
             return;
         }
 
+        // Ok, we can fire.
+        fire_queued = false;
+        CancelInvoke(nameof(CancelQueuedShot));
+        
         // Missfire
-        if (data.curr_ammo == 0)
+        if (curr_ammo == 0)
         {
             sfx_source.PlayOneShot(data.click_sfx, .6f);
             return;
         }
        
-        // Ok, we can fire.
-        fire_queued = false;
-        CancelInvoke(nameof(CancelQueuedShot));
         // Calculate spread
         float spread = data.spread / 10;
         Vector2 spread_area = new Vector2(Random.Range(-spread, spread), Random.Range(-spread, spread));
@@ -162,14 +175,14 @@ public class Gun : MonoBehaviour
             damageable?.Damage(data.base_damage);
         }
 
-        data.curr_ammo--;
+        curr_ammo--;
         time_since_last_shot = 0;
         OnFired();
     }
 
     public void StartReload()
     {
-        if (reloading || data.curr_ammo == data.mag_size)
+        if (reloading || curr_ammo >= data.mag_size)
             return;
 
         StartCoroutine(Reload());

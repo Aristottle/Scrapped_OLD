@@ -20,6 +20,7 @@ public class WeaponData : ScriptableObject
     [Header("Handling")]
     public bool requires_two_hands = true;
     public float ads_speed = .3f;
+    public float ads_forward_offset = .1f;
 
     [Header("Recoil")]
     public Vector3 recoil_amount = new Vector3(-2, 2, 6);
@@ -28,7 +29,7 @@ public class WeaponData : ScriptableObject
     public float return_strength = 8;
 
     [Header("Ammo / Reloading")]
-    public int curr_ammo;
+    public bool can_chamber = true;
     public int mag_size;
     public float fire_rate;
     public float reload_time;

@@ -20,16 +20,16 @@ MonoBehaviour:
   spread: 0.25
   camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
   requires_two_hands: 0
-  ads_speed: 0.3
+  ads_speed: 0.15
+  ads_forward_offset: 0.1
   recoil_amount: {x: -20, y: 5, z: 5}
   kickback: 0.15
   recoil_strength: 5
   return_strength: 8
-  curr_ammo: 0
+  can_chamber: 0
   mag_size: 6
   fire_rate: 240
   reload_time: 3
-  is_reloading: 0
   fire_sfx: {fileID: 8300000, guid: b2d159f7e00d44d9bbc2d50a0c4fef59, type: 3}
   reload_sfx: {fileID: 8300000, guid: 8fd3b54a7513c914689c8dd709f06dec, type: 3}
   equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}

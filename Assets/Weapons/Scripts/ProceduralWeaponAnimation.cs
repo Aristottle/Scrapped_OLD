@@ -11,6 +11,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     public float movement_intensity;
     public float idle_freq;
     public float idle_intensity;
+    private bool pause_animation = false;
 
     [Header("Sway")]
     public float rotation_intensity = 10f;
@@ -23,11 +24,12 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerController player;
     [SerializeField] Transform anim_root;
+    [SerializeField] Transform sway_root;
 
-    private Quaternion origin_rotation;
-    private Vector3 origin_position;
-    private Quaternion root_origin_rotation;
-    private Vector3 root_origin_position;
+    private Quaternion sway_origin_rotation;
+    private Vector3 sway_origin_position;
+    private Quaternion anim_origin_rotation;
+    private Vector3 anim_origin_position;
     private float idle_time;
     private float movement_time;
 
@@ -38,16 +40,20 @@ public class ProceduralWeaponAnimation : MonoBehaviour
 
     private void Start()
     {
-        origin_rotation = transform.localRotation;
-        origin_position = transform.localPosition;
-        root_origin_rotation = anim_root.localRotation;
-        root_origin_position = anim_root.localPosition;
+        sway_origin_rotation = sway_root.localRotation;
+        sway_origin_position = sway_root.localPosition;
+        anim_origin_rotation = anim_root.localRotation;
+        anim_origin_position = anim_root.localPosition;
     }
 
     private void Update()
     {
         UpdateSway();
-        UpdateAnimation();
+
+        if (!pause_animation)
+            UpdateAnimation();
+        else if (anim_root.localPosition != anim_origin_position)
+            anim_root.localPosition = Vector3.Lerp(anim_root.localPosition, anim_origin_position, Time.deltaTime * 10f);
     }
 
     #endregion
@@ -65,16 +71,16 @@ public class ProceduralWeaponAnimation : MonoBehaviour
         Vector3 target_position = new Vector3(position_offset_x, position_offset_y, 0);
 
         // Move to target position
-        transform.localPosition = Vector3.Lerp(transform.localPosition, target_position + origin_position, Time.deltaTime * position_adherance);
+        sway_root.localPosition = Vector3.Lerp(sway_root.localPosition, target_position + sway_origin_position, Time.deltaTime * position_adherance);
 
         // Calculate target rotation
         Quaternion yaw_offset = Quaternion.AngleAxis(rotation_intensity * -look_input.x, Vector3.up);
         Quaternion pitch_offset = Quaternion.AngleAxis(rotation_intensity * look_input.y, Vector3.right);
         Quaternion roll_offset = Quaternion.AngleAxis(Mathf.Clamp(rotation_intensity * 3f * -look_input.x, 0f, max_tilt), Vector3.forward);
-        Quaternion target_rotation = origin_rotation * yaw_offset * pitch_offset * roll_offset;
+        Quaternion target_rotation = sway_origin_rotation * yaw_offset * pitch_offset * roll_offset;
 
         // Rotate to target rotation
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, target_rotation, rotation_adherance * Time.deltaTime);
+        sway_root.localRotation = Quaternion.Slerp(sway_root.localRotation, target_rotation, rotation_adherance * Time.deltaTime);
     }
 
     private void UpdateAnimation()
@@ -103,7 +109,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     {
         float h_motion = Mathf.Cos(t * idle_freq / 2) * (idle_intensity * 2);
         float v_motion = Mathf.Sin(t * idle_freq) * idle_intensity;
-        anim_root.localPosition = Vector3.Lerp(anim_root.localPosition, root_origin_position + new Vector3(h_motion, v_motion, 0), Time.deltaTime * 10f);
+        anim_root.localPosition = Vector3.Lerp(anim_root.localPosition, anim_origin_position + new Vector3(h_motion, v_motion, 0), Time.deltaTime * 10f);
     }
     
     private void Movement(float t, float scale = 1)
@@ -111,7 +117,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
         float freq = movement_freq;
         float h_motion = Mathf.Cos(t * freq / 2) * (movement_intensity * 2 * scale);
         float v_motion = Mathf.Sin(t * freq) * movement_intensity * scale;
-        anim_root.localPosition = Vector3.Lerp(anim_root.localPosition, root_origin_position + new Vector3(h_motion, v_motion, 0), Time.deltaTime * 10f);
+        anim_root.localPosition = Vector3.Lerp(anim_root.localPosition, anim_origin_position + new Vector3(h_motion, v_motion, 0), Time.deltaTime * 10f);
     }
     
     private void CrouchTilt()
@@ -127,6 +133,11 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     public void Init(PlayerController p)
     {
         player = p;
+    }
+
+    public void TogglePlay(bool play)
+    {
+        pause_animation = !play;
     }
 
     #endregion

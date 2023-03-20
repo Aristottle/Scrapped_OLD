@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7307357507893994173}
+  - {fileID: 2139098932320395556}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   muzzle: {fileID: 4037678152239411040}
   wielder: {fileID: 0}
   muzzle_flash: {fileID: 3026896370275236255}
+  input_buffer_duration: 0.1
   show_debug: 0
 --- !u!114 &3314395371025479129
 MonoBehaviour:
@@ -90,6 +91,7 @@ MonoBehaviour:
   max_position_offset: 0.05
   player: {fileID: 0}
   anim_root: {fileID: 7307357507893994173}
+  sway_root: {fileID: 2139098932320395556}
 --- !u!82 &1497411236085778939
 AudioSource:
   m_ObjectHideFlags: 0
@@ -299,6 +301,38 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &2782257046667056303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139098932320395556}
+  m_Layer: 0
+  m_Name: SwayRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2139098932320395556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2782257046667056303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7307357507893994173}
+  m_Father: {fileID: 7366442164497606604}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4751739825458161570
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,13 +420,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8055841870790745406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4569972468436573354}
-  m_Father: {fileID: 7366442164497606604}
+  m_Father: {fileID: 2139098932320395556}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7480182975628470897
