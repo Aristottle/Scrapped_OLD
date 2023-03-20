@@ -22,9 +22,10 @@ MonoBehaviour:
   requires_two_hands: 0
   ads_speed: 0.15
   ads_forward_offset: 0.35
-  recoil_amount: {x: -20, y: 5, z: 5}
-  kickback: 0.15
-  recoil_strength: 5
+  recoil_amount: {x: -30, y: 5, z: 5}
+  kickback: 0.1
+  max_kickback: 0.5
+  recoil_strength: 8
   return_strength: 8
   can_chamber: 0
   mag_size: 6

@@ -16,7 +16,7 @@ public class ProceduralRecoil : MonoBehaviour
 
     [Header("Data")]
     Vector3 recoil_amount;
-    float kickback, recoil_strength, return_strength;
+    float kickback, max_kickback, recoil_strength, return_strength;
 
     #endregion
 
@@ -29,6 +29,7 @@ public class ProceduralRecoil : MonoBehaviour
         WeaponData data = GetComponent<Gun>()?.data;
         recoil_amount = data.recoil_amount;
         kickback = data.kickback;
+        max_kickback = data.max_kickback;
         recoil_strength = data.recoil_strength;
         return_strength = data.return_strength;
 
@@ -81,7 +82,7 @@ public class ProceduralRecoil : MonoBehaviour
     public void AddRecoil()
     {
         // Kickback
-        target_pos -= new Vector3(0, 0, kickback);
+        target_pos.z = Mathf.Clamp(target_pos.z - kickback, -max_kickback, 0f);
         // Recoil
         float rot_x = recoil_amount.x;
         float rot_y = Random.Range(-recoil_amount.y, recoil_amount.y);

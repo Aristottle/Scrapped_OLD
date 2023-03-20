@@ -24,7 +24,8 @@ public class WeaponData : ScriptableObject
 
     [Header("Recoil")]
     public Vector3 recoil_amount = new Vector3(-2, 2, 6);
-    public float kickback = .2f;
+    public float kickback = .1f;
+    public float max_kickback = .2f;
     public float recoil_strength = 5;
     public float return_strength = 8;
 

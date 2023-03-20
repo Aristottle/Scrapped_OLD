@@ -66,7 +66,7 @@ public class ProceduralADS : MonoBehaviour
         proc_anims?.TogglePlay(false);
         is_ads = true;
         Vector3 sight_offset = camera_transform.position - ads_transform.position;
-        Debug.Log(ads_transform.localPosition);
+        Debug.Log(sight_offset);
         target_pos = origin_pos + sight_offset;
         target_pos += camera_transform.forward * ads_z_offset;
     }
