@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ads_transform: {fileID: 1712320973976566152}
-  debug_stuff: 1
+  debug_stuff: 0
 --- !u!114 &7152200885991633941
 MonoBehaviour:
   m_ObjectHideFlags: 0
