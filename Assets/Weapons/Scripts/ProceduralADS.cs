@@ -54,8 +54,9 @@ public class ProceduralADS : MonoBehaviour
 
     #region Private Methods
 
-    private void UpdateTargetPoint()
+    private Vector3 CalculateADSPoint()
     {
+        Vector3 rv = Vector3.zero;
         // Gets the camera_transform relative to the weapon_transform
         Vector3 relative_cam_pos = camera_transform.InverseTransformPoint(weapon_transform.position);
         // Gets the ads_transform relative to the weapon_transform
@@ -64,8 +65,10 @@ public class ProceduralADS : MonoBehaviour
         Vector3 sight_offset = relative_cam_pos - relative_ads_pos;
         if (debug_stuff) Debug.Log(sight_offset);
         // Set the new target_pos
-        target_pos = origin_pos - sight_offset;
-        target_pos.z += ads_z_offset;
+        rv = origin_pos - sight_offset;
+        rv.z += ads_z_offset;
+
+        return rv;
     }
 
     private void ToggleADS()
@@ -77,15 +80,17 @@ public class ProceduralADS : MonoBehaviour
 
     private void StartADS()
     {
-        proc_anims?.TogglePlay(false);
+        // proc_anims?.TogglePlay(false);
         is_ads = true;
-        UpdateTargetPoint();
+        proc_anims.is_ads = is_ads;
+        target_pos = CalculateADSPoint();
     }
 
     private void StopADS()
     {
-        proc_anims?.TogglePlay(true);
+        // proc_anims?.TogglePlay(true);
         is_ads = false;
+        proc_anims.is_ads = is_ads;
         target_pos = origin_pos;
     }
 
@@ -95,9 +100,6 @@ public class ProceduralADS : MonoBehaviour
         // Only run this code if necessary
         if (!can_ads && weapon_transform.localPosition == target_pos)
             return;
-
-        // if (is_ads)
-        //     UpdateTargetPoint();
 
         weapon_transform.localPosition = Vector3.Lerp(weapon_transform.localPosition, target_pos, Time.deltaTime / ads_speed);
     }
