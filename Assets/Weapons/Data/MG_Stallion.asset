@@ -21,7 +21,7 @@ MonoBehaviour:
   camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
   requires_two_hands: 0
   ads_speed: 0.15
-  ads_forward_offset: 0.1
+  ads_forward_offset: 0.35
   recoil_amount: {x: -20, y: 5, z: 5}
   kickback: 0.15
   recoil_strength: 5

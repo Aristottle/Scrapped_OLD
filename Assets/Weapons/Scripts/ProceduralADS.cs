@@ -31,8 +31,12 @@ public class ProceduralADS : MonoBehaviour
 
     private void Update() 
     {
-        DebugExtension.DebugWireSphere(weapon_transform.position, Color.red, .01f, Time.deltaTime);
-        // Debug.Log(camera_transform.forward);
+        if (debug_stuff)
+        {
+            DebugExtension.DebugWireSphere(weapon_transform.position, Color.red, .01f, Time.deltaTime);
+            // This is where the gun should be when aiming
+            DebugExtension.DebugWireSphere(weapon_transform.parent.position + target_pos, Color.magenta, .01f, Time.deltaTime);
+        }
     }
 
     private void LateUpdate()
@@ -62,12 +66,9 @@ public class ProceduralADS : MonoBehaviour
         proc_anims?.TogglePlay(false);
         is_ads = true;
         Vector3 sight_offset = camera_transform.position - ads_transform.position;
-        Debug.Log(sight_offset);
+        Debug.Log(ads_transform.localPosition);
         target_pos = origin_pos + sight_offset;
         target_pos += camera_transform.forward * ads_z_offset;
-
-        // This is where the gun should be when aiming
-        DebugExtension.DebugWireSphere(transform.position + target_pos, Color.magenta, .01f, 1);
     }
 
     private void StopADS()
