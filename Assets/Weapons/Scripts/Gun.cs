@@ -104,6 +104,10 @@ public class Gun : MonoBehaviour
         // Apply recoil
         recoil?.AddRecoil();
 
+        // Full auto
+        if (data.fire_mode == FireMode.full_auto && Input.GetButton("Primary Action"))
+            fire_queued = true;
+
         return;
     }
 
@@ -127,17 +131,7 @@ public class Gun : MonoBehaviour
         return;
     }
 
-    #endregion
-
-
-    #region Public Methods
-
-    public void Init(PlayerController w)
-    {
-        wielder = w;
-    }
-
-    public void Fire()
+    private void Fire()
     {
         // Can fire?
         if (!CanFire())
@@ -180,7 +174,7 @@ public class Gun : MonoBehaviour
         OnFired();
     }
 
-    public void StartReload()
+    private void StartReload()
     {
         if (reloading || curr_ammo >= data.mag_size)
             return;
@@ -189,6 +183,16 @@ public class Gun : MonoBehaviour
 
         // Play the reload sfx
         sfx_source.PlayOneShot(data.reload_sfx, .6f);
+    }
+
+    #endregion
+
+
+    #region Public Methods
+
+    public void Init(PlayerController w)
+    {
+        wielder = w;
     }
 
     #endregion

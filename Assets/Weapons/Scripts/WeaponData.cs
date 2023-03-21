@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FireMode
+{
+    semi_auto,
+    full_auto,
+    burst,
+}
+
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapon/WeaponData")]
 
 public class WeaponData : ScriptableObject
@@ -11,6 +18,7 @@ public class WeaponData : ScriptableObject
     public GameObject prefab;
 
     [Header("Firing")]
+    public FireMode fire_mode = FireMode.semi_auto;
     public float base_damage = 25;
     public float crit_multi = 1.5f;
     public float max_range = 100f;
