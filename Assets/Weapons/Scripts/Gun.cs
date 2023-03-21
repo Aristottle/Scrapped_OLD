@@ -74,6 +74,11 @@ public class Gun : MonoBehaviour
 
         if (fire_queued && CanFire())
         {
+            if (data.fire_mode == FireMode.full_auto && !Input.GetButton("Primary Action"))
+            {
+                fire_queued = false;
+                return;
+            }
             Fire();
         }
     }

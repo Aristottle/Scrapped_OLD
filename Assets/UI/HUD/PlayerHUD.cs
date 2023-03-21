@@ -7,6 +7,7 @@ public class PlayerHUD : MonoBehaviour
     [HideInInspector] public Gun weapon_ref;
     public TMPro.TextMeshProUGUI ammo_text;
     public TMPro.TextMeshProUGUI speed_text;
+    public TMPro.TextMeshProUGUI gun_text;
     public Rigidbody rb_ref;
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class PlayerHUD : MonoBehaviour
             int max = weapon_ref.data.mag_size;
             int current = weapon_ref.curr_ammo;
             ammo_text.text = $"{current} / {max}";
+            gun_text.text = $"{weapon_ref.data.weapon_name}";
         }
 
         // Calc the speed
