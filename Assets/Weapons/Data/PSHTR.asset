@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon_name: P5HTR
   prefab: {fileID: 856057890735161329, guid: d4fe803213842fc4ba1ae16724c05cba, type: 3}
+  fire_mode: 0
   base_damage: 15
   crit_multi: 1.5
   max_range: 50
@@ -30,7 +31,7 @@ MonoBehaviour:
   can_chamber: 1
   mag_size: 15
   fire_rate: 400
-  reload_time: 3
+  reload_time: 2
   fire_sfx: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
   reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}

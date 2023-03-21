@@ -89,7 +89,7 @@ public class Gun : MonoBehaviour
 
     #region Private Methods
 
-    private bool CanFire() => !reloading && time_since_last_shot > 1f / (data.fire_rate / 60f);
+    private bool CanFire() => !reloading && time_since_last_shot >= 1f / (data.fire_rate / 60f);
 
     private void OnFired()
     {
