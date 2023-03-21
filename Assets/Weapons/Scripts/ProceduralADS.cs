@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ProceduralADS : MonoBehaviour
 {
+    #region Events
+
+    
+
+    #endregion
+
+
     #region Variables
 
     [Header("Data")]
