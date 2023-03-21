@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
     [Header("References")]
     public WeaponData data;
     [SerializeField] Transform muzzle;
-    [SerializeField] PlayerController wielder;
+    public PlayerController wielder { get; private set; }
     [SerializeField] VisualEffect muzzle_flash;
     Shaker camera_shaker;
     AudioSource sfx_source;

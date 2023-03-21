@@ -11,6 +11,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     public float movement_intensity;
     public float idle_freq;
     public float idle_intensity;
+    public Vector3 crouch_rotation_offset;
     private bool pause_animation = false;
     [HideInInspector] public bool is_ads = false;
 
@@ -50,6 +51,7 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     private void Update()
     {
         UpdateSway();
+        UpdateStance();
 
         if (!pause_animation)
             UpdateAnimation();
@@ -108,8 +110,19 @@ public class ProceduralWeaponAnimation : MonoBehaviour
             Idle(idle_time, ads_multiplier);
             idle_time += Time.deltaTime;
         }
+    }
 
+    private void UpdateStance()
+    {
         // TODO: Crouch tilt
+        if (player.is_crouching && !is_ads)
+        {
+            CrouchTilt();
+        }
+        else if (anim_root.localRotation != anim_origin_rotation)
+        {
+            anim_root.localRotation = Quaternion.Slerp(anim_root.localRotation, anim_origin_rotation, Time.deltaTime * 10);
+        }
     }
 
     private void Idle(float t, float multi = 1)
@@ -129,7 +142,14 @@ public class ProceduralWeaponAnimation : MonoBehaviour
     
     private void CrouchTilt()
     {
-        return;
+        // Calculate target rotation
+        Quaternion yaw_offset = Quaternion.AngleAxis(0, Vector3.up);
+        Quaternion pitch_offset = Quaternion.AngleAxis(0, Vector3.right);
+        Quaternion roll_offset = Quaternion.AngleAxis(30, Vector3.forward);
+        Quaternion target_rotation = anim_origin_rotation * yaw_offset * pitch_offset * roll_offset;
+
+        // Rotate to target rotation
+        anim_root.localRotation = Quaternion.Slerp(anim_root.localRotation, target_rotation,  Time.deltaTime / .25f);
     }
 
     #endregion

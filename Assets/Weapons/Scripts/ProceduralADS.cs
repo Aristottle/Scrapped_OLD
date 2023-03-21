@@ -12,7 +12,7 @@ public class ProceduralADS : MonoBehaviour
 
     [Header("Runtime Data")]
     bool can_ads = false;
-    bool is_ads = false;
+    [HideInInspector] public bool is_ads { get; private set; } = false;
     Vector3 target_pos, origin_pos;
 
     [Header("References")]

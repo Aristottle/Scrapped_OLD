@@ -11,6 +11,8 @@ public class PlayerSlide : PlayerGrounded
     float tilt_amount = 7.5f;
     float fov_offset = 5f;
 
+    ProceduralWeaponAnimation[] proc_weapon_anims;
+
     public override void Enter(Dictionary<string, string> msg = null)
     {
         base.Enter();
@@ -27,6 +29,13 @@ public class PlayerSlide : PlayerGrounded
         player_ref.camera_fx.TiltCamera(tilt_amount);
         // Apply fov change
         player_ref.camera_fx.OffsetFOV(fov_offset);
+
+        // Pause procedural anims
+        proc_weapon_anims = player_ref.transform.parent.GetComponentsInChildren<ProceduralWeaponAnimation>();
+        foreach (ProceduralWeaponAnimation anim in proc_weapon_anims)
+        {
+            anim.TogglePlay(false);
+        }
     }
 
     public override void UpdateLogic() 
@@ -65,6 +74,10 @@ public class PlayerSlide : PlayerGrounded
 
         if (!stay_crouched) player_ref.Stand();
         stay_crouched = false;
-
+        
+        foreach (ProceduralWeaponAnimation anim in proc_weapon_anims)
+        {
+            anim.TogglePlay(true);
+        }
     }
 }

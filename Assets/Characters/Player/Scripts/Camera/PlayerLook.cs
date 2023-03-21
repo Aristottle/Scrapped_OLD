@@ -36,6 +36,8 @@ public class PlayerLook : MonoBehaviour
     {
         if (Cursor.lockState == CursorLockMode.Locked) HandleInput();
 
+        x_rot = Mathf.Clamp(x_rot, -87f, 87f);
+
         // Apply the rotations
         transform.localRotation = Quaternion.Euler(x_rot, 0, 0);
         player_transform.rotation = Quaternion.Euler(0, y_rot, 0);
@@ -45,14 +47,18 @@ public class PlayerLook : MonoBehaviour
         transform.localPosition = Vector3.Lerp(transform.localPosition, offset, Time.deltaTime * position_lerp_speed);
     }
 
-    void HandleInput()
+    private void HandleInput()
     {
         mouse_x = Input.GetAxisRaw("Mouse X");
         mouse_y = Input.GetAxisRaw("Mouse Y");
 
         y_rot += mouse_x * look_sensitivity * look_multi;
         x_rot -= mouse_y * look_sensitivity * look_multi;
+    }
 
-        x_rot = Mathf.Clamp(x_rot, -87f, 87f);
+    public void AddLookRotation(Vector2 rotation)
+    {
+        x_rot += rotation.x;
+        y_rot += rotation.y;
     }
 }

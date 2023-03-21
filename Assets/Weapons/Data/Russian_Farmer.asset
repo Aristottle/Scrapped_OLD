@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a27394471f78a104ca33d8b0c383749b, type: 3}
-  m_Name: MG_Stallion
+  m_Name: Russian_Farmer
   m_EditorClassIdentifier: 
-  weapon_name: MG ST4LL10N
-  prefab: {fileID: 856057890735161329, guid: e1f39b844f2c6e242af18607f158218f, type: 3}
-  fire_mode: 0
-  base_damage: 40
+  weapon_name: Russian Farmer
+  prefab: {fileID: 856057890735161329, guid: c364d3e915f9ff24d96f8111ff652bfe, type: 3}
+  fire_mode: 1
+  base_damage: 35
   crit_multi: 2
-  max_range: 50
-  spread: 0.25
+  max_range: 75
+  spread: 0.15
   camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
-  requires_two_hands: 0
+  requires_two_hands: 1
   ads_speed: 0.15
-  ads_forward_offset: 0.25
-  recoil_amount: {x: -30, y: 5, z: 5}
+  ads_forward_offset: 0.3
+  recoil_amount: {x: -5, y: 6, z: 6}
   kickback: 0.1
-  max_kickback: 0.5
-  recoil_strength: 8
+  max_kickback: 0.25
+  recoil_strength: 5
   return_strength: 8
-  can_chamber: 0
-  mag_size: 6
-  fire_rate: 240
+  can_chamber: 1
+  mag_size: 30
+  fire_rate: 600
   reload_time: 3
-  fire_sfx: {fileID: 8300000, guid: b2d159f7e00d44d9bbc2d50a0c4fef59, type: 3}
-  reload_sfx: {fileID: 8300000, guid: 8fd3b54a7513c914689c8dd709f06dec, type: 3}
+  fire_sfx: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
+  reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
   unequip_sfx: {fileID: 0}
   click_sfx: {fileID: 8300000, guid: cf8af97bd29c01846a4dcb045c7d810a, type: 3}

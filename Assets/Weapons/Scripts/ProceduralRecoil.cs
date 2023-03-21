@@ -8,6 +8,8 @@ public class ProceduralRecoil : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Transform recoil_root;
+    [SerializeField] ProceduralADS proc_ads;
+    PlayerController player;
 
     [Header("Transforms")]
     Vector3 origin_pos, origin_rot;
@@ -17,6 +19,7 @@ public class ProceduralRecoil : MonoBehaviour
     [Header("Data")]
     Vector3 recoil_amount;
     float kickback, max_kickback, recoil_strength, return_strength;
+    bool is_ads;
 
     #endregion
 
@@ -25,8 +28,9 @@ public class ProceduralRecoil : MonoBehaviour
 
     private void Start() 
     {
+        Gun weapon = GetComponent<Gun>();
         // Get the recoil data
-        WeaponData data = GetComponent<Gun>()?.data;
+        WeaponData data = weapon?.data;
         recoil_amount = data.recoil_amount;
         kickback = data.kickback;
         max_kickback = data.max_kickback;
@@ -36,6 +40,12 @@ public class ProceduralRecoil : MonoBehaviour
         // Get the initial origins
         origin_pos = recoil_root.localPosition;
         origin_rot = recoil_root.localEulerAngles;
+
+        // Get the wielder
+        player = weapon.wielder;
+
+        // Get the ads comp
+        proc_ads = weapon.GetComponent<ProceduralADS>();
     }
 
     private void Update()
@@ -82,12 +92,23 @@ public class ProceduralRecoil : MonoBehaviour
     public void AddRecoil()
     {
         // Kickback
-        target_pos.z = Mathf.Clamp(target_pos.z - kickback, -max_kickback, 0f);
+        if (!proc_ads.is_ads)
+            target_pos.z = Mathf.Clamp(target_pos.z - kickback, -max_kickback, 0f);
+
         // Recoil
         float rot_x = recoil_amount.x;
         float rot_y = Random.Range(-recoil_amount.y, recoil_amount.y);
         float rot_z = Random.Range(-recoil_amount.z, recoil_amount.z);
-        target_rot += new Vector3(rot_x, rot_y, rot_z);
+        Vector3 new_target_rot = new Vector3(rot_x, rot_y, rot_z);
+
+        // If we're ADSing, we want the recoil to apply to the camera and not the gun itself
+        if (proc_ads.is_ads)
+        {
+            player.eyes.GetComponent<PlayerLook>().AddLookRotation(new Vector2(new_target_rot.x / 4, new_target_rot.y / 4));
+            new_target_rot = new Vector3(0, 0, new_target_rot.z);
+        }
+        
+        target_rot += new_target_rot;
     }
 
     #endregion

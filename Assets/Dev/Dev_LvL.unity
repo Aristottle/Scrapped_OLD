@@ -79542,7 +79542,7 @@ PrefabInstance:
         type: 3}
       propertyPath: default_main
       value: 
-      objectReference: {fileID: 11400000, guid: 68defaad375ab95488ed9af450853ad1,
+      objectReference: {fileID: 11400000, guid: c87f1606a568d9744bd5b008fb55de3f,
         type: 2}
     - target: {fileID: 1987648727819507759, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
@@ -79588,13 +79588,13 @@ PrefabInstance:
         type: 3}
       propertyPath: gun_one
       value: 
-      objectReference: {fileID: 11400000, guid: aedd6343945f142488da7bf91be6fa54,
+      objectReference: {fileID: 11400000, guid: c87f1606a568d9744bd5b008fb55de3f,
         type: 2}
     - target: {fileID: 6357103900868150939, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
       propertyPath: gun_two
       value: 
-      objectReference: {fileID: 11400000, guid: eaf88748be11bbd439260ef1bd8ff3de,
+      objectReference: {fileID: 11400000, guid: 68defaad375ab95488ed9af450853ad1,
         type: 2}
     - target: {fileID: 6357103900868150939, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}

@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public float standing_height = 2f;
     public float crouch_height = 1f;
     private float crouch_position_offset = 0.5f;
-    private bool is_crouching;
+    public bool is_crouching {get; private set;}
 
     [Header("Sliding")]
     public float slide_impulse = 300f;
