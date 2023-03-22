@@ -101,12 +101,11 @@ public class ProceduralRecoil : MonoBehaviour
         float rot_z = Random.Range(-recoil_amount.z, recoil_amount.z);
         Vector3 new_target_rot = new Vector3(rot_x, rot_y, rot_z);
 
-        // If we're ADSing, we want the recoil to apply to the camera and not the gun itself
+        // Apply recoil to the camera
+        player.eyes.GetComponent<PlayerLook>().AddLookRotation(new Vector2(new_target_rot.x / 4, new_target_rot.y / 4));
+        // If we're ADSing, we only want to show the z recoil on the gun
         if (proc_ads.is_ads)
-        {
-            player.eyes.GetComponent<PlayerLook>().AddLookRotation(new Vector2(new_target_rot.x / 4, new_target_rot.y / 4));
             new_target_rot = new Vector3(0, 0, new_target_rot.z);
-        }
         
         target_rot += new_target_rot;
     }

@@ -25,6 +25,9 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UIManager.game_paused)
+            return;
+
         // Shoot Input
         if (Input.GetButtonDown("Primary Action"))
             primary_input?.Invoke();

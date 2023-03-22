@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a27394471f78a104ca33d8b0c383749b, type: 3}
-  m_Name: Russian_Farmer
+  m_Name: Svetlana
   m_EditorClassIdentifier: 
-  weapon_name: Russian Farmer
+  weapon_name: Svetlana
   prefab: {fileID: 856057890735161329, guid: c364d3e915f9ff24d96f8111ff652bfe, type: 3}
   fire_mode: 1
   fire_rate: 600
@@ -33,7 +33,7 @@ MonoBehaviour:
   return_strength: 8
   can_chamber: 1
   mag_size: 30
-  reload_time: 3
+  reload_time: 2
   fire_sfx: {fileID: 8300000, guid: 339a1ec93761f420881df21fca4125e0, type: 3}
   action_sfx: {fileID: 8300000, guid: be4697500848d4e02a9c23852e193fb4, type: 3}
   reload_sfx: {fileID: 8300000, guid: e8d6b900cfa514a13857d8b038860ffc, type: 3}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6526936716805140878}
   - component: {fileID: 1497411236085778939}
   m_Layer: 3
-  m_Name: Russian_Farmer
+  m_Name: Svetlana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c87f1606a568d9744bd5b008fb55de3f, type: 2}
   muzzle: {fileID: 4037678152239411040}
-  wielder: {fileID: 0}
   muzzle_flash: {fileID: 3026896370275236255}
   input_buffer_duration: 0.1
   show_debug: 0
@@ -83,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoil_root: {fileID: 1543534714342448122}
+  proc_ads: {fileID: 0}
 --- !u!114 &6526936716805140878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.2
+      - m_Value: 0.15
         m_Name: Max_Lifetime
         m_Overridden: 1
       - m_Value: 0.5

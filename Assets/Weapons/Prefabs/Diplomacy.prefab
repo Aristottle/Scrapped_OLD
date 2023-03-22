@@ -287,10 +287,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.2
+      - m_Value: 0.15
         m_Name: Max_Lifetime
         m_Overridden: 1
-      - m_Value: 0.5
+      - m_Value: 0.65
         m_Name: Size
         m_Overridden: 1
       - m_Value: 0.1
