@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class ShootingRangeTarget : MonoBehaviour, IDamageable
 {
+    public Action OnDeath;
+    
     private float health = 1;
     [HideInInspector] public bool destroyed = false;
 
@@ -27,14 +30,16 @@ public class ShootingRangeTarget : MonoBehaviour, IDamageable
     void OnDamaged()
     {
         if (health <= 0)
-            OnDeath();
+            Death();
     }
 
-    private void OnDeath()
+    private void Death()
     {
         ToggleHidden(true);
         // Play the burst VFX
         death_fx?.Play();
+
+        OnDeath?.Invoke();
     }
 
     public void ToggleHidden(bool hidden = true)

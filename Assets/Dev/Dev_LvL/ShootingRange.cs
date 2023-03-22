@@ -8,7 +8,7 @@ public class ShootingRange : MonoBehaviour
     #region Variables
 
     ShootingRangeTarget[] targets;
-    float tick_rate = 5;
+    int num_disabled = 0;
 
     #endregion
 
@@ -19,7 +19,18 @@ public class ShootingRange : MonoBehaviour
     {
         targets = GetComponentsInChildren<ShootingRangeTarget>();
 
-        Invoke(nameof(TargetsUpdate), tick_rate);
+        foreach (ShootingRangeTarget t in targets)
+        {
+            t.OnDeath += TargetsUpdate;
+        }
+    }
+
+    private void OnDisable() 
+    {
+        foreach (ShootingRangeTarget t in targets)
+        {
+            t.OnDeath -= TargetsUpdate;
+        }
     }
 
     #endregion
@@ -29,20 +40,21 @@ public class ShootingRange : MonoBehaviour
 
     private void TargetsUpdate()
     {
-        bool all_destroyed = true;
-        foreach (ShootingRangeTarget target in targets)
-        {
-            if (!target.destroyed)
-                all_destroyed = false;
-        }
+        num_disabled++;
 
-        if (all_destroyed)
+        if (num_disabled == targets.Length)
         {
-            foreach (ShootingRangeTarget target in targets)
-                target.ToggleHidden(false);
+            num_disabled = 0;
+            Invoke(nameof(RestoreTargets), 3);
         }
+    }
 
-        Invoke(nameof(TargetsUpdate), tick_rate);
+    private void RestoreTargets()
+    {
+        foreach (ShootingRangeTarget t in targets)
+        {
+            t.ToggleHidden(false);
+        }
     }
 
     #endregion

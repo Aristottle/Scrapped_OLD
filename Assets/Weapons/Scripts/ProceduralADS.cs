@@ -108,6 +108,8 @@ public class ProceduralADS : MonoBehaviour
         if (!can_ads && weapon_transform.localPosition == target_pos)
             return;
 
+        // if (is_ads)
+        //     target_pos = CalculateADSPoint();
         weapon_transform.localPosition = Vector3.Lerp(weapon_transform.localPosition, target_pos, Time.deltaTime / ads_speed);
     }
 
