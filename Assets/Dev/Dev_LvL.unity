@@ -43244,7 +43244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29782
+  m_Name: pb_Mesh28942
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -79594,7 +79594,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gun_two
       value: 
-      objectReference: {fileID: 11400000, guid: 68defaad375ab95488ed9af450853ad1,
+      objectReference: {fileID: 11400000, guid: 0ebba3645eb458249ab6fefcc4b238cf,
         type: 2}
     - target: {fileID: 6357103900868150939, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}

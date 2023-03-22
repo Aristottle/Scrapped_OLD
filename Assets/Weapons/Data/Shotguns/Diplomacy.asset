@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27394471f78a104ca33d8b0c383749b, type: 3}
+  m_Name: Diplomacy
+  m_EditorClassIdentifier: 
+  weapon_name: Diplomacy
+  prefab: {fileID: 856057890735161329, guid: beea619994342654ba73cc76a9cc4c7b, type: 3}
+  fire_mode: 3
+  fire_rate: 60
+  projectiles_per_shot: 12
+  action_time: 0.2
+  base_damage: 5
+  crit_multi: 1.5
+  max_range: 40
+  spread: 0.5
+  camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
+  requires_two_hands: 1
+  ads_speed: 0.2
+  ads_forward_offset: 0.1
+  recoil_amount: {x: -25, y: 15, z: 5}
+  kickback: 0.15
+  max_kickback: 0.4
+  recoil_strength: 5
+  return_strength: 8
+  can_chamber: 1
+  mag_size: 5
+  reload_time: 2.5
+  fire_sfx: {fileID: 8300000, guid: 24fe75c12ffde4bc0ad0dc0c5f11cd18, type: 3}
+  action_sfx: {fileID: 8300000, guid: 5583e542ab50d45748076a2ed741a696, type: 3}
+  reload_sfx: {fileID: 8300000, guid: 0da9ad2e2fb5cf34689f12b7441620ac, type: 3}
+  equip_sfx: {fileID: 8300000, guid: 5583e542ab50d45748076a2ed741a696, type: 3}
+  unequip_sfx: {fileID: 0}
+  click_sfx: {fileID: 8300000, guid: 01d902bd4f57a44c4a5abbf4d04b1486, type: 3}

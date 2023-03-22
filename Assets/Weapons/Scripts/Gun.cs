@@ -94,7 +94,9 @@ public class Gun : MonoBehaviour
 
     #region Private Methods
 
-    private bool CanFire() => !reloading && time_since_last_shot >= 1f / (data.fire_rate / 60f);
+    private float TimeBetweenShots() => 1f / (data.fire_rate / 60f);
+
+    private bool CanFire() => !reloading && time_since_last_shot >= TimeBetweenShots();
 
     private void OnFired()
     {
@@ -105,6 +107,9 @@ public class Gun : MonoBehaviour
 
         // Play the fire sound effect
         sfx_source.PlayOneShot(data.fire_sfx);
+
+        if (data.fire_mode == FireMode.action)
+            Invoke(nameof(PlayActionSFX), data.action_time);
 
         // Apply recoil
         recoil?.AddRecoil();
@@ -158,25 +163,31 @@ public class Gun : MonoBehaviour
             return;
         }
        
-        // Calculate spread
-        float spread = data.spread / 10;
-        Vector2 spread_area = new Vector2(Random.Range(-spread, spread), Random.Range(-spread, spread));
-        Vector3 direction = aim_transform.forward + new Vector3(spread_area.x, spread_area.y, 0);
-        if (Physics.Raycast(aim_transform.position, direction, out RaycastHit hit_info, data.max_range))
+        // Shoot each projectile. Obviously for most guns this will just happen once
+        for (int i = 0; i < data.projectiles_per_shot; i++)
         {
-            if (show_debug) 
+            // Calculate spread
+            float spread = data.spread / 10;
+            Vector2 spread_area = new Vector2(Random.Range(-spread, spread), Random.Range(-spread, spread));
+            Vector3 direction = aim_transform.forward + new Vector3(spread_area.x, spread_area.y, 0);
+            if (Physics.Raycast(aim_transform.position, direction, out RaycastHit hit_info, data.max_range))
             {
-                Debug.Log($"Hit {hit_info.transform.name}");
-                Debug.DrawRay(aim_transform.position, direction * hit_info.distance, Color.green, .5f);
-                Debug.DrawRay(muzzle.position, (hit_info.point - muzzle.position) * Vector3.Distance(hit_info.point, muzzle.position), Color.red, .5f);
+                if (show_debug) 
+                    Debug.DrawRay(muzzle.position, (hit_info.point - muzzle.position) * Vector3.Distance(hit_info.point, muzzle.position), Color.red, .5f);
+
+                IDamageable damageable = hit_info.transform.GetComponent<IDamageable>();
+                damageable?.Damage(data.base_damage);
             }
-            IDamageable damageable = hit_info.transform.GetComponent<IDamageable>();
-            damageable?.Damage(data.base_damage);
         }
 
         curr_ammo--;
         time_since_last_shot = 0;
         OnFired();
+    }
+
+    private void PlayActionSFX()
+    {
+        sfx_source.PlayOneShot(data.action_sfx, .5f);
     }
 
     private void StartReload()

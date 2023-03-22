@@ -7,6 +7,7 @@ public enum FireMode
     semi_auto,
     full_auto,
     burst,
+    action,
 }
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapon/WeaponData")]
@@ -19,6 +20,9 @@ public class WeaponData : ScriptableObject
 
     [Header("Firing")]
     public FireMode fire_mode = FireMode.semi_auto;
+    public float fire_rate;
+    public int projectiles_per_shot = 1;
+    public float action_time = .2f;
     public float base_damage = 25;
     public float crit_multi = 1.5f;
     public float max_range = 100f;
@@ -40,11 +44,11 @@ public class WeaponData : ScriptableObject
     [Header("Ammo / Reloading")]
     public bool can_chamber = true;
     public int mag_size;
-    public float fire_rate;
     public float reload_time;
 
     [Header("SFX")]
     public AudioClip fire_sfx;
+    public AudioClip action_sfx;
     public AudioClip reload_sfx;
     public AudioClip equip_sfx;
     public AudioClip unequip_sfx;
