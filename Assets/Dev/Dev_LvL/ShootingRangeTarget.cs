@@ -27,12 +27,12 @@ public class ShootingRangeTarget : MonoBehaviour, IDamageable
     void OnDamaged()
     {
         if (health <= 0)
-            ToggleHidden(true);
-
+            OnDeath();
     }
 
     private void OnDeath()
     {
+        ToggleHidden(true);
         // Play the burst VFX
         death_fx?.Play();
     }
@@ -42,12 +42,14 @@ public class ShootingRangeTarget : MonoBehaviour, IDamageable
         destroyed = hidden;
         if (destroyed)
         {
-            gameObject.SetActive(false);
+            GetComponentInChildren<MeshRenderer>().enabled = false;
+            GetComponentInChildren<SphereCollider>().enabled = false;
         }
         else
         {
             health = 1;
-            gameObject.SetActive(true);
+            GetComponentInChildren<MeshRenderer>().enabled = true;
+            GetComponentInChildren<SphereCollider>().enabled = true;
         }
     }
 }
