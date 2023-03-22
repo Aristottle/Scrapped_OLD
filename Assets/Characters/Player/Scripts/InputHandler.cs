@@ -16,6 +16,10 @@ public class InputHandler : MonoBehaviour
     [SerializeField] WeaponManager weapon_manager;
     [SerializeField] WeaponData gun_one;
     [SerializeField] WeaponData gun_two;
+    [SerializeField] WeaponData gun_three;
+    [SerializeField] WeaponData gun_four;
+    [SerializeField] WeaponData gun_five;
+    [SerializeField] WeaponData gun_six;
 
     #endregion
 
@@ -54,10 +58,25 @@ public class InputHandler : MonoBehaviour
         {
             weapon_manager.EquipWeapon(gun_one, "Main");
         }
-        
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             weapon_manager.EquipWeapon(gun_two, "Main");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            weapon_manager.EquipWeapon(gun_three, "Main");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            weapon_manager.EquipWeapon(gun_four, "Main");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            weapon_manager.EquipWeapon(gun_five, "Main");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            weapon_manager.EquipWeapon(gun_six, "Main");
         }
     }
 

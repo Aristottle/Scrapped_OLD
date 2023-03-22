@@ -15,6 +15,9 @@ MonoBehaviour:
   weapon_name: P5HTR
   prefab: {fileID: 856057890735161329, guid: d4fe803213842fc4ba1ae16724c05cba, type: 3}
   fire_mode: 0
+  fire_rate: 400
+  projectiles_per_shot: 1
+  action_time: 0.2
   base_damage: 15
   crit_multi: 1.5
   max_range: 50
@@ -30,10 +33,15 @@ MonoBehaviour:
   return_strength: 8
   can_chamber: 1
   mag_size: 15
-  fire_rate: 400
   reload_time: 2
-  fire_sfx: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
-  reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
-  equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
+  fire_sfx:
+  - {fileID: 8300000, guid: 3932456779c334fb1a3a597a51229a04, type: 3}
+  - {fileID: 8300000, guid: 75ece120c7c6d4c7d924cb34d5eccb16, type: 3}
+  - {fileID: 8300000, guid: 01f37b87b9d02475a92ff719e7575027, type: 3}
+  - {fileID: 8300000, guid: 3fc8672196a70423683a98fb2171b36f, type: 3}
+  - {fileID: 8300000, guid: 34cb38957e2cf4336a78b9fc1da77b81, type: 3}
+  action_sfx: {fileID: 0}
+  reload_sfx: {fileID: 8300000, guid: 2c634fd2359e046ebad69133a4bd76fd, type: 3}
+  equip_sfx: {fileID: 8300000, guid: ff602047faa394b04883e8b92ddf40d7, type: 3}
   unequip_sfx: {fileID: 0}
   click_sfx: {fileID: 8300000, guid: cf8af97bd29c01846a4dcb045c7d810a, type: 3}

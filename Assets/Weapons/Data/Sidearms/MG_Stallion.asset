@@ -15,6 +15,9 @@ MonoBehaviour:
   weapon_name: MG ST4LL10N
   prefab: {fileID: 856057890735161329, guid: e1f39b844f2c6e242af18607f158218f, type: 3}
   fire_mode: 0
+  fire_rate: 240
+  projectiles_per_shot: 1
+  action_time: 0.2
   base_damage: 40
   crit_multi: 2
   max_range: 50
@@ -30,10 +33,15 @@ MonoBehaviour:
   return_strength: 8
   can_chamber: 0
   mag_size: 6
-  fire_rate: 240
   reload_time: 3
-  fire_sfx: {fileID: 8300000, guid: b2d159f7e00d44d9bbc2d50a0c4fef59, type: 3}
-  reload_sfx: {fileID: 8300000, guid: 8fd3b54a7513c914689c8dd709f06dec, type: 3}
-  equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
+  fire_sfx:
+  - {fileID: 8300000, guid: 711a5d363d4964c1c936051a65e280cb, type: 3}
+  - {fileID: 8300000, guid: a511b91c044b1454a8a9cfed5ad3e9fe, type: 3}
+  - {fileID: 8300000, guid: 7a42d37d5f0984e779e9c569bcc27df1, type: 3}
+  - {fileID: 8300000, guid: 5d98f9844df454b1381f6e0e8d935c94, type: 3}
+  - {fileID: 8300000, guid: 1b53b3714edbf490dac5aaf099463ee0, type: 3}
+  action_sfx: {fileID: 8300000, guid: 263f409fb499f406490cfd7e2c62d0c3, type: 3}
+  reload_sfx: {fileID: 8300000, guid: 347ae91897ec0448cb293fb1b945178f, type: 3}
+  equip_sfx: {fileID: 8300000, guid: 263f409fb499f406490cfd7e2c62d0c3, type: 3}
   unequip_sfx: {fileID: 0}
-  click_sfx: {fileID: 8300000, guid: cf8af97bd29c01846a4dcb045c7d810a, type: 3}
+  click_sfx: {fileID: 8300000, guid: ae2e59243062440c28f2178bc7c1a2ea, type: 3}

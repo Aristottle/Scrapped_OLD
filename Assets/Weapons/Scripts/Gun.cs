@@ -105,8 +105,9 @@ public class Gun : MonoBehaviour
 
         camera_shaker?.Shake(data.camera_shake);
 
-        // Play the fire sound effect
-        sfx_source.PlayOneShot(data.fire_sfx);
+        // Play the fire sound effect. Picks one randomly from the array on the S.O.
+        AudioClip fire_sfx = data.fire_sfx[Random.Range(0, data.fire_sfx.Length)];
+        sfx_source.PlayOneShot(fire_sfx);
 
         if (data.fire_mode == FireMode.action)
             Invoke(nameof(PlayActionSFX), data.action_time);

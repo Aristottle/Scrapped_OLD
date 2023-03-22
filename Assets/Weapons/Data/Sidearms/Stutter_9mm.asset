@@ -15,6 +15,9 @@ MonoBehaviour:
   weapon_name: Stutter 9mm
   prefab: {fileID: 856057890735161329, guid: ef57871092820124ea6e6f01b2320008, type: 3}
   fire_mode: 1
+  fire_rate: 600
+  projectiles_per_shot: 1
+  action_time: 0.2
   base_damage: 15
   crit_multi: 1.5
   max_range: 50
@@ -30,10 +33,15 @@ MonoBehaviour:
   return_strength: 8
   can_chamber: 1
   mag_size: 22
-  fire_rate: 600
   reload_time: 2.5
-  fire_sfx: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
-  reload_sfx: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
-  equip_sfx: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
+  fire_sfx:
+  - {fileID: 8300000, guid: 924b47ad38eab4e14aec8abd5c9200fa, type: 3}
+  - {fileID: 8300000, guid: b31f0e7c27aa6434fbf13da7ecec76ee, type: 3}
+  - {fileID: 8300000, guid: 6e07664fc50d7468baef580e61ddfb05, type: 3}
+  - {fileID: 8300000, guid: 9d251bb018e2e48a284734c7cb4d5797, type: 3}
+  - {fileID: 8300000, guid: 9bdde4a5398ae4ce397b6a811ea71b7a, type: 3}
+  action_sfx: {fileID: 8300000, guid: ea7e6b69eef1345498b1f583b4465200, type: 3}
+  reload_sfx: {fileID: 8300000, guid: 737c78995a28a45e9bdb58cbbdb14948, type: 3}
+  equip_sfx: {fileID: 8300000, guid: ea7e6b69eef1345498b1f583b4465200, type: 3}
   unequip_sfx: {fileID: 0}
   click_sfx: {fileID: 8300000, guid: cf8af97bd29c01846a4dcb045c7d810a, type: 3}

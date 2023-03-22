@@ -63,9 +63,15 @@ public class WeaponManager : MonoBehaviour
 
     public bool EquipWeapon(WeaponData weapon, string slot_name)
     {
+        if (weapon == null)
+        {
+            Debug.Log("Invalid weapon data tried to be equipped.");
+            return false;
+        }
+
         if (!sockets.ContainsKey(slot_name))
         {
-            Debug.Log("Invalid slot_name in WeaponManager");
+            Debug.Log("Invalid slot_name in WeaponManager.");
             return false;
         }
 

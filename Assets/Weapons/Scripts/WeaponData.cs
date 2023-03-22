@@ -47,7 +47,7 @@ public class WeaponData : ScriptableObject
     public float reload_time;
 
     [Header("SFX")]
-    public AudioClip fire_sfx;
+    public AudioClip[] fire_sfx;
     public AudioClip action_sfx;
     public AudioClip reload_sfx;
     public AudioClip equip_sfx;

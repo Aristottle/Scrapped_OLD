@@ -34,7 +34,12 @@ MonoBehaviour:
   can_chamber: 1
   mag_size: 30
   reload_time: 2
-  fire_sfx: {fileID: 8300000, guid: 339a1ec93761f420881df21fca4125e0, type: 3}
+  fire_sfx:
+  - {fileID: 8300000, guid: 339a1ec93761f420881df21fca4125e0, type: 3}
+  - {fileID: 8300000, guid: fc6e702539a2d40f398a49185202d797, type: 3}
+  - {fileID: 8300000, guid: ee5d5c2b41b654412af79263303a1d2d, type: 3}
+  - {fileID: 8300000, guid: 7f310916dc2344602a11c53fb8ecaceb, type: 3}
+  - {fileID: 8300000, guid: fbb65b8aaa090418eb62a8b33fc4308c, type: 3}
   action_sfx: {fileID: 8300000, guid: be4697500848d4e02a9c23852e193fb4, type: 3}
   reload_sfx: {fileID: 8300000, guid: e8d6b900cfa514a13857d8b038860ffc, type: 3}
   equip_sfx: {fileID: 8300000, guid: be4697500848d4e02a9c23852e193fb4, type: 3}
