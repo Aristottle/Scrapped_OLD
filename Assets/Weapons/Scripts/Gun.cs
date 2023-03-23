@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     public WeaponData data;
     [SerializeField] Transform muzzle;
     public PlayerController wielder { get; private set; }
+    public WeaponManager weapon_manager { get; private set; }
     [SerializeField] VisualEffect muzzle_flash;
     Shaker camera_shaker;
     AudioSource sfx_source;
@@ -181,8 +182,11 @@ public class Gun : MonoBehaviour
             }
         }
 
-        curr_ammo--;
+        if (!weapon_manager.infinite_ammo) curr_ammo--;
+        else curr_ammo = data.mag_size;
+
         time_since_last_shot = 0;
+        
         OnFired();
     }
 
@@ -207,9 +211,10 @@ public class Gun : MonoBehaviour
 
     #region Public Methods
 
-    public void Init(PlayerController w)
+    public void Init(PlayerController wielder, WeaponManager weapon_manager)
     {
-        wielder = w;
+        this.wielder = wielder;
+        this.weapon_manager = weapon_manager;
     }
 
     #endregion

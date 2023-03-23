@@ -20,6 +20,10 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] PlayerHUD hud_manager;
     private Dictionary<string, Gun> weapon_slots;
 
+    [Header("PowerUps")]
+    public bool infinite_ammo = false;
+    public bool insta_kill = false;
+
     #endregion
 
 
@@ -87,7 +91,7 @@ public class WeaponManager : MonoBehaviour
 
         // Create the new gun
         Gun new_gun = Instantiate(weapon.prefab, sockets[slot_name]).GetComponent<Gun>();
-        new_gun.Init(player);
+        new_gun.Init(player, this);
         weapon_slots[slot_name] = new_gun;
 
         // Update the HUD
