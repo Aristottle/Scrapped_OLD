@@ -79396,6 +79396,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6357103900868150939, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
         type: 3}
+      propertyPath: gun_six
+      value: 
+      objectReference: {fileID: 11400000, guid: 421138faa30902f4ca8397dae943007a,
+        type: 2}
+    - target: {fileID: 6357103900868150939, guid: 0dddbb9effe3c2b4e80ec762ca23595d,
+        type: 3}
       propertyPath: gun_two
       value: 
       objectReference: {fileID: 11400000, guid: 0ebba3645eb458249ab6fefcc4b238cf,

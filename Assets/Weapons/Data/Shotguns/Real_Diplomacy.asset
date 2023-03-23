@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27394471f78a104ca33d8b0c383749b, type: 3}
+  m_Name: Real_Diplomacy
+  m_EditorClassIdentifier: 
+  weapon_name: R34L-Diplomacy
+  prefab: {fileID: 856057890735161329, guid: c7b948ec17cf7fd41b3d8f3291746423, type: 3}
+  fire_mode: 1
+  fire_rate: 210
+  projectiles_per_shot: 12
+  action_time: 0.2
+  base_damage: 5
+  crit_multi: 1.5
+  max_range: 40
+  spread: 0.5
+  camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
+  requires_two_hands: 1
+  ads_speed: 0.2
+  ads_forward_offset: 0.1
+  recoil_amount: {x: -25, y: 15, z: 5}
+  kickback: 0.15
+  max_kickback: 0.4
+  recoil_strength: 5
+  return_strength: 8
+  can_chamber: 1
+  mag_size: 7
+  reload_time: 2.5
+  fire_sfx:
+  - {fileID: 8300000, guid: 6cc3077ad54444c5cbde02bbeea6b32e, type: 3}
+  - {fileID: 8300000, guid: 6ed0e2e4b6d7d4161bf6ac6b0028292b, type: 3}
+  - {fileID: 8300000, guid: 3978a8af8bc7041879fc8a6a8f7cac13, type: 3}
+  - {fileID: 8300000, guid: 551505cf213aa4bb0af9b3e4cce42cec, type: 3}
+  - {fileID: 8300000, guid: f7f9ccb06c7824771b1b038518865ff4, type: 3}
+  action_sfx: {fileID: 8300000, guid: d0d6eb985da054ba9a02bec5813bdcbb, type: 3}
+  reload_sfx: {fileID: 8300000, guid: c922656c8885842fc956663615bb4c0c, type: 3}
+  equip_sfx: {fileID: 8300000, guid: d0d6eb985da054ba9a02bec5813bdcbb, type: 3}
+  unequip_sfx: {fileID: 0}
+  click_sfx: {fileID: 8300000, guid: 01d902bd4f57a44c4a5abbf4d04b1486, type: 3}
