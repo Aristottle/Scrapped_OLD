@@ -729,6 +729,7 @@ MonoBehaviour:
   rb: {fileID: 6881224231963196586}
   camera_fx: {fileID: 2939912696143863895}
   eyes: {fileID: 6881224231888670020}
+  camera_transform: {fileID: 6685804004984783243}
   fsm: {fileID: 6881224231963196583}
   print_debug: 0
   is_grounded: 0
@@ -799,6 +800,10 @@ MonoBehaviour:
   weapon_manager: {fileID: 0}
   gun_one: {fileID: 0}
   gun_two: {fileID: 0}
+  gun_three: {fileID: 0}
+  gun_four: {fileID: 0}
+  gun_five: {fileID: 0}
+  gun_six: {fileID: 0}
 --- !u!1 &6881224233076520679
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   weapon_name: R34L-Diplomacy
   prefab: {fileID: 856057890735161329, guid: c7b948ec17cf7fd41b3d8f3291746423, type: 3}
   fire_mode: 1
-  fire_rate: 210
+  fire_rate: 300
   projectiles_per_shot: 12
   action_time: 0.2
   base_damage: 5

@@ -50,7 +50,7 @@ public class Gun : MonoBehaviour
         InputHandler.reload_input += StartReload;
 
         // Get references
-        aim_transform = wielder.eyes;
+        aim_transform = wielder.camera_transform;
         camera_shaker = wielder.camera_fx.camera_shaker;
         sfx_source = GetComponent<AudioSource>();
 

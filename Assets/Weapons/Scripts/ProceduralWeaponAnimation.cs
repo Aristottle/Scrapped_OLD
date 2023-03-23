@@ -78,6 +78,12 @@ public class ProceduralWeaponAnimation : MonoBehaviour
             // Move to target position
             sway_root.localPosition = Vector3.Lerp(sway_root.localPosition, target_position + sway_origin_position, Time.deltaTime * (position_adherance));
         }
+        else
+        {
+            // Need to lerp back to origin to fix the offset
+            sway_root.localPosition = Vector3.Lerp(sway_root.localPosition, sway_origin_position, Time.deltaTime * (position_adherance));
+        }
+
 
         // Calculate target rotation
         Quaternion yaw_offset = Quaternion.AngleAxis(rotation_intensity * -look_input.x, Vector3.up);

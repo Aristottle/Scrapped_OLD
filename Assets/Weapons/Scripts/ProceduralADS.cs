@@ -18,7 +18,7 @@ public class ProceduralADS : MonoBehaviour
     float ads_z_offset;
 
     [Header("Runtime Data")]
-    bool can_ads = false;
+    bool can_ads = true;
     [HideInInspector] public bool is_ads { get; private set; } = false;
     Vector3 target_pos, origin_pos;
 
@@ -72,7 +72,7 @@ public class ProceduralADS : MonoBehaviour
         Vector3 sight_offset = relative_cam_pos - relative_ads_pos;
         if (debug_stuff) Debug.Log(sight_offset);
         // Set the new target_pos
-        rv = origin_pos - sight_offset;
+        rv = weapon_transform.localPosition - sight_offset;
         rv.z += ads_z_offset;
 
         return rv;
@@ -108,8 +108,9 @@ public class ProceduralADS : MonoBehaviour
         if (!can_ads && weapon_transform.localPosition == target_pos)
             return;
 
-        // if (is_ads)
-        //     target_pos = CalculateADSPoint();
+        if (is_ads)
+            target_pos = CalculateADSPoint();
+
         weapon_transform.localPosition = Vector3.Lerp(weapon_transform.localPosition, target_pos, Time.deltaTime / ads_speed);
     }
 

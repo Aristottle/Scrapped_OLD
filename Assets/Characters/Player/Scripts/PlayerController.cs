@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public CameraEffects camera_fx;
     public Transform eyes;
+    public Transform camera_transform;
     [SerializeField] PlayerFSM fsm;
 
     [Header("Debug")]
