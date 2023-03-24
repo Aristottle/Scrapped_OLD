@@ -78,6 +78,20 @@ public class UIManager : MonoBehaviour
         game_paused = true;
     }
 
+    public void SettingsMenu()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
+        pause_menu?.SetActive(false);
+        settings_menu?.SetActive(true);
+        hud?.SetActive(false);
+
+        Time.timeScale = 0;
+
+        game_paused = true;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
