@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public float look_sensitivity = 1f;
 
     public Transform player_transform;
 
     [SerializeField] float position_lerp_speed = 6f;
+
+    [SerializeField] PlayerControlsData control_settings;
 
     [Header("References")]
     [SerializeField] CapsuleCollider capsule;
@@ -52,8 +53,8 @@ public class PlayerLook : MonoBehaviour
         mouse_x = Input.GetAxisRaw("Mouse X");
         mouse_y = Input.GetAxisRaw("Mouse Y");
 
-        y_rot += mouse_x * look_sensitivity * look_multi;
-        x_rot -= mouse_y * look_sensitivity * look_multi;
+        y_rot += mouse_x * control_settings.mouse_sensitivity * look_multi;
+        x_rot -= mouse_y * control_settings.mouse_sensitivity * look_multi;
     }
 
     public void AddLookRotation(Vector2 rotation)
