@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
 
         pause_menu?.SetActive(true);
-        settings_menu?.SetActive(true);
+        settings_menu?.SetActive(false);
         hud?.SetActive(false);
 
         Time.timeScale = 0;
