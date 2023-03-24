@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] GameObject pause_menu;
+    [SerializeField] GameObject settings_menu;
     [SerializeField] GameObject hud;
      
     #endregion
@@ -54,8 +55,9 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        pause_menu.SetActive(false);
-        hud.SetActive(true);
+        pause_menu?.SetActive(false);
+        settings_menu?.SetActive(false);
+        hud?.SetActive(true);
 
         Time.timeScale = 1;
 
@@ -67,8 +69,9 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
-        pause_menu.SetActive(true);
-        hud.SetActive(false);
+        pause_menu?.SetActive(true);
+        settings_menu?.SetActive(true);
+        hud?.SetActive(false);
 
         Time.timeScale = 0;
 
