@@ -8,6 +8,7 @@ public class PlayerHUD : MonoBehaviour
     public TMPro.TextMeshProUGUI ammo_text;
     public TMPro.TextMeshProUGUI speed_text;
     public TMPro.TextMeshProUGUI gun_text;
+    public GameObject crosshair;
     public Rigidbody rb_ref;
 
     // Update is called once per frame
@@ -27,5 +28,10 @@ public class PlayerHUD : MonoBehaviour
         int speed = Mathf.RoundToInt(flat_speed.magnitude * 3.6f);
         // Set the text
         speed_text.text = $"{speed} kph";
+    }
+
+    public void ToggleCrosshair(bool active)
+    {
+        crosshair.SetActive(active);
     }
 }

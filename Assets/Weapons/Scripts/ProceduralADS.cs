@@ -91,6 +91,7 @@ public class ProceduralADS : MonoBehaviour
         is_ads = true;
         proc_anims.is_ads = is_ads;
         target_pos = CalculateADSPoint();
+        GetComponent<Gun>()?.weapon_manager.hud_manager.ToggleCrosshair(false);
     }
 
     private void StopADS()
@@ -99,6 +100,7 @@ public class ProceduralADS : MonoBehaviour
         is_ads = false;
         proc_anims.is_ads = is_ads;
         target_pos = origin_pos;
+        GetComponent<Gun>()?.weapon_manager.hud_manager.ToggleCrosshair(true);
     }
 
     // This is the only thing called on Update()

@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         pause_menu.SetActive(false);
         hud.SetActive(true);
@@ -63,7 +64,8 @@ public class UIManager : MonoBehaviour
     
     public void Pause()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 
         pause_menu.SetActive(true);
         hud.SetActive(false);

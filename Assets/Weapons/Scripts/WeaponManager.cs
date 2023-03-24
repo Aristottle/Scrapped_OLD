@@ -17,7 +17,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] PlayerController player;
-    [SerializeField] PlayerHUD hud_manager;
+    public PlayerHUD hud_manager;
     private Dictionary<string, Gun> weapon_slots;
 
     [Header("PowerUps")]

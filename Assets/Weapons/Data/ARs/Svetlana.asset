@@ -22,7 +22,7 @@ MonoBehaviour:
   crit_multi: 2
   max_range: 75
   spread: 0.15
-  camera_shake: {fileID: 11400000, guid: 27807a11c7bfa624288f4f34b3625bf7, type: 2}
+  camera_shake: {fileID: 11400000, guid: 0bf8d4b802b187147886b6d8e437836f, type: 2}
   requires_two_hands: 1
   ads_speed: 0.15
   ads_forward_offset: 0.3
