@@ -27,7 +27,7 @@ public class PlayerHUD : MonoBehaviour
 
         // Calc the speed
         Vector2 flat_speed = new Vector2(rb_ref.velocity.x, rb_ref.velocity.z);
-        int speed_num = Mathf.RoundToInt(Mathf.Clamp(flat_speed.magnitude * 3.6f, 0, 50));
+        int speed_num = Mathf.CeilToInt(Mathf.Clamp(flat_speed.magnitude * 3.6f, 0, 50));
         float speed_scale = Mathf.Clamp01(speed_num / 50f);
         // Set the text
         speed_text.text = string.Format("{0:00}<size=12> kph</size>", speed_num);

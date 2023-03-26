@@ -574,6 +574,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Mouse Sense = 0.50
       objectReference: {fileID: 0}
+    - target: {fileID: 1752639384009254299, guid: 28ba8db5316f5fd48b5ad7e0ab261630,
+        type: 3}
+      propertyPath: ui_manager
+      value: 
+      objectReference: {fileID: 6807262535443235608}
     - target: {fileID: 2206142106826489934, guid: 28ba8db5316f5fd48b5ad7e0ab261630,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
