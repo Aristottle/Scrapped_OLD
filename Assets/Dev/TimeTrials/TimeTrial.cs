@@ -25,9 +25,9 @@ public class TimeTrial : MonoBehaviour
     void Update()
     {
         if (running_trial)
-            time_elapsed += Time.deltaTime;
-
-        // print(time_elapsed);
+        {
+            time_elapsed += Time.deltaTime;        
+        }
     }
 
     void PlayerDetected(bool start)
@@ -54,11 +54,11 @@ public class TimeTrial : MonoBehaviour
         time_elapsed = 0f;
     }
 
-    private void OnGUI()
-    {
-        double time = (double) time_elapsed;
-        double pb = (double) best_time;
-        string content = running_trial ? $"Time: {time}\nTrial PB: {pb}" : $"Trial PB: {pb}";
-        GUILayout.Label($"<color='black'><size=24>{content}</size></color>");
-    }
+    // private void OnGUI()
+    // {
+    //     double time = (double) time_elapsed;
+    //     double pb = (double) best_time;
+    //     string content = running_trial ? $"Time: {time}\nTrial PB: {pb}" : $"Trial PB: {pb}";
+    //     GUILayout.Label($"<color='black'><size=24>{content}</size></color>");
+    // }
 }
