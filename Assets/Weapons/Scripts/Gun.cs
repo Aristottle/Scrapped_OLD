@@ -177,6 +177,13 @@ public class Gun : MonoBehaviour
                 if (show_debug) 
                     Debug.DrawRay(muzzle.position, (hit_info.point - muzzle.position) * Vector3.Distance(hit_info.point, muzzle.position), Color.red, .5f);
 
+                // // Spawn the impact effects
+                // if (data.impact_vfx != null)
+                // {
+                //     GameObject impact_obj = Instantiate<GameObject>(data.impact_vfx, hit_info.point, Quaternion.LookRotation(hit_info.normal, Vector3.up));
+                // }
+
+                // Do damage
                 IDamageable damageable = hit_info.transform.GetComponent<IDamageable>();
                 damageable?.Damage(data.base_damage);
             }

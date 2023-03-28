@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public enum FireMode
 {
@@ -10,13 +11,25 @@ public enum FireMode
     action,
 }
 
+public enum ProjectileType
+{
+    raycast,
+    projectile,
+}
+
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapon/WeaponData")]
 
 public class WeaponData : ScriptableObject
 {
-    [Header("Info")]
+    [Header("Core")]
     public string weapon_name;
     public GameObject prefab;
+
+    [Header("Projectile")]
+    public ProjectileType projectile_type = ProjectileType.raycast;
+    [Tooltip("This is the prefab of the projectile to be used by this gun. Only used if we're not a raycast gun.")] public GameObject projectile_prefab;
+    public GameObject impact_vfx;
+    // public ... impact_decal;
 
     [Header("Firing")]
     public FireMode fire_mode = FireMode.semi_auto;

@@ -9,10 +9,9 @@ public class TimeTrial : MonoBehaviour
     [SerializeField] TrialCheckpoint end;
 
     [Header("Time")]
-    private float best_time = 0f;
-    private float time_elapsed = 0f;
+    private float best_time = -1;
 
-    private bool running_trial = false;
+    private HUDTimer hud_timer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,44 +20,33 @@ public class TimeTrial : MonoBehaviour
         TrialCheckpoint.PlayerEntered += PlayerDetected;
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlayerDetected(bool start, GameObject player)
     {
-        if (running_trial)
-        {
-            time_elapsed += Time.deltaTime;        
-        }
-    }
+        hud_timer = player.transform.parent.GetComponentInChildren<HUDTimer>();
 
-    void PlayerDetected(bool start)
-    {
         if (start)
             StartTrial();
         else
             EndTrial();
-            
     }
     
     void StartTrial()
     {
-        running_trial = true;
+        hud_timer.StartTimer();
     }
 
     void EndTrial()
     {
-        running_trial = false;
+        float run_time = hud_timer.StopTimer();
 
-        if (time_elapsed <= best_time || best_time <= 0)
-            best_time = time_elapsed;
-
-        time_elapsed = 0f;
+        if (run_time < best_time || best_time == -1)
+        {
+            best_time = run_time;
+            Debug.Log($"New best time of {best_time}!");
+        }
+        else
+        {
+            Debug.Log("Didn't beat PB.");
+        }
     }
-
-    // private void OnGUI()
-    // {
-    //     double time = (double) time_elapsed;
-    //     double pb = (double) best_time;
-    //     string content = running_trial ? $"Time: {time}\nTrial PB: {pb}" : $"Trial PB: {pb}";
-    //     GUILayout.Label($"<color='black'><size=24>{content}</size></color>");
-    // }
 }

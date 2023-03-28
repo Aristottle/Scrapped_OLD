@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon_name: Stutter 9mm
   prefab: {fileID: 856057890735161329, guid: ef57871092820124ea6e6f01b2320008, type: 3}
+  projectile_type: 0
+  projectile_prefab: {fileID: 0}
+  impact_vfx: {fileID: 8653341507678394732, guid: e27db7db97315a84e86a3ac388fdd544,
+    type: 3}
   fire_mode: 1
   fire_rate: 600
   projectiles_per_shot: 1
