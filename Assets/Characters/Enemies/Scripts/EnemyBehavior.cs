@@ -15,6 +15,8 @@ public class EnemyBehavior : MonoBehaviour
     
     [SerializeField] BehaviorState defaultBehavior = BehaviorState.Idle;
 
+    private Transform currentTarget;
+
     private BehaviorState currentBehavior = BehaviorState.Idle;
 
     // Start is called before the first frame update
@@ -41,13 +43,20 @@ public class EnemyBehavior : MonoBehaviour
                 _IdleUpdate();
                 break;
         }
+
+        // Debug print
+        Debug.Log($"Current State: {currentBehavior.ToString()}");
     }
 
     #region States
 
     void _IdleUpdate()
     {
-        
+        if (GetNearestPlayer() != null)
+        {
+            currentTarget = GetNearestPlayer();
+            currentBehavior = BehaviorState.Chasing;
+        }
     }
     
     void _ChaseUpdate()
@@ -71,7 +80,26 @@ public class EnemyBehavior : MonoBehaviour
 
     Transform GetNearestPlayer()
     {
-        return null;
+        List<GameObject> allPlayers = PlayerManager.GetPlayerCharacters();
+
+        Transform nearestTransform = null;
+        bool changed = false;
+
+        float shortestDistance = -1;
+        foreach (var character in allPlayers)
+        {
+            if (character == null)
+                continue;
+
+            float distance = Vector3.Distance(transform.position, character.transform.position);
+            if (distance < shortestDistance || shortestDistance < 0)
+            {
+                nearestTransform = character.transform;
+                changed = true;
+            }
+        }
+
+        return (changed) ? nearestTransform : currentTarget;
     }
 
     #endregion
