@@ -22,7 +22,7 @@ public static class PlayerManager
         {
             return;
         }
-        playerCharacters.Append<GameObject>(character);
+        playerCharacters.Add(character);
 
         Debug.Log("Player registered");
     }
