@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UltEvents;
 
 public class EnemyBehavior : MonoBehaviour
@@ -19,8 +20,14 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] BehaviorState defaultBehavior = BehaviorState.Idle;
 
     private Transform currentTarget;
-
     private BehaviorState currentBehavior = BehaviorState.Idle;
+
+    private NavMeshAgent navMeshAgent;
+
+    private void Awake() 
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,10 +62,10 @@ public class EnemyBehavior : MonoBehaviour
 
     void _IdleUpdate()
     {
-        Transform nearestPlayer = GetNearestPlayer();
+        GameObject nearestPlayer = GetNearestPlayer();
         if (nearestPlayer != null)
         {
-            currentTarget = nearestPlayer;
+            currentTarget = nearestPlayer.transform;
             ChangeState(BehaviorState.Chasing);
         }
         else
@@ -69,7 +76,11 @@ public class EnemyBehavior : MonoBehaviour
     
     void _ChaseUpdate()
     {
-        
+        if (currentTarget)
+        {
+            Debug.Log(currentTarget.position);
+            navMeshAgent.SetDestination(currentTarget.position);
+        }
     }
 
     void _AttackUpdate()
@@ -86,11 +97,11 @@ public class EnemyBehavior : MonoBehaviour
 
     #region Private Helpers
 
-    Transform GetNearestPlayer()
+    GameObject GetNearestPlayer()
     {
         List<GameObject> allPlayers = PlayerManager.GetPlayerCharacters();
 
-        Transform nearestTransform = null;
+        GameObject nearest = null;
 
         float shortestDistance = -1;
         foreach (var character in allPlayers)
@@ -104,11 +115,11 @@ public class EnemyBehavior : MonoBehaviour
             float distance = Vector3.Distance(transform.position, character.transform.position);
             if (distance <= shortestDistance || shortestDistance < 0)
             {
-                nearestTransform = character.transform;
+                nearest = character;
             }
         }
 
-        return nearestTransform;
+        return nearest;
     }
 
     private void ChangeState(BehaviorState newState)
