@@ -19,10 +19,4 @@ public class EnemyManager : MonoBehaviour
             Instantiate(enemyPrefab, spawnTransform.position, spawnTransform.rotation);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
