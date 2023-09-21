@@ -18,22 +18,27 @@ public class EnemyBehavior : MonoBehaviour
     public UltEvent<BehaviorState> onBehaviorStateChanged;
     
     [SerializeField] BehaviorState defaultBehavior = BehaviorState.Idle;
-    [SerializeField] EnemyBehaviorProfile behaviorProfile;
+    [SerializeField] EnemyProfile enemyProfile;
 
     private Transform currentTarget;
     private BehaviorState currentBehavior = BehaviorState.Idle;
 
     private NavMeshAgent navMeshAgent;
+    private CharacterHealth characterHealth;
 
     private void Awake() 
     {
-        if (!behaviorProfile)
+        if (!enemyProfile)
         {
             Debug.Log("ERR: behaviorProfile not set on AI");
             Destroy(gameObject);
         }
 
         navMeshAgent = GetComponent<NavMeshAgent>();
+        characterHealth = GetComponent<CharacterHealth>();
+
+        // init the character health
+        characterHealth.InitializeHealth(enemyProfile);
     }
 
     // Start is called before the first frame update
@@ -73,7 +78,7 @@ public class EnemyBehavior : MonoBehaviour
         if (nearestPlayer != null)
         {
             currentTarget = nearestPlayer.transform;
-            if (!CheckDesiredRange(behaviorProfile.desiredCombatRange))
+            if (!CheckDesiredRange(enemyProfile.desiredCombatRange))
             {
                 ChangeState(BehaviorState.Chasing);
             }
@@ -89,7 +94,7 @@ public class EnemyBehavior : MonoBehaviour
         if (currentTarget)
         {
             // Debug.Log(currentTarget.position);
-            if (!CheckDesiredRange(behaviorProfile.desiredCombatRange))
+            if (!CheckDesiredRange(enemyProfile.desiredCombatRange))
             {
                 navMeshAgent.isStopped = false;
                 navMeshAgent.SetDestination(currentTarget.position);
