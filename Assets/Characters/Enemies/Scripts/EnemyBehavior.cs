@@ -18,6 +18,7 @@ public class EnemyBehavior : MonoBehaviour
     public UltEvent<BehaviorState> onBehaviorStateChanged;
     
     [SerializeField] BehaviorState defaultBehavior = BehaviorState.Idle;
+    [SerializeField] EnemyBehaviorProfile behaviorProfile;
 
     private Transform currentTarget;
     private BehaviorState currentBehavior = BehaviorState.Idle;
@@ -26,6 +27,12 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Awake() 
     {
+        if (!behaviorProfile)
+        {
+            Debug.Log("ERR: behaviorProfile not set on AI");
+            Destroy(gameObject);
+        }
+
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -66,7 +73,10 @@ public class EnemyBehavior : MonoBehaviour
         if (nearestPlayer != null)
         {
             currentTarget = nearestPlayer.transform;
-            ChangeState(BehaviorState.Chasing);
+            if (!CheckDesiredRange(behaviorProfile.desiredCombatRange))
+            {
+                ChangeState(BehaviorState.Chasing);
+            }
         }
         else
         {
@@ -78,9 +88,15 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (currentTarget)
         {
-            Debug.Log(currentTarget.position);
-            navMeshAgent.SetDestination(currentTarget.position);
+            // Debug.Log(currentTarget.position);
+            if (!CheckDesiredRange(behaviorProfile.desiredCombatRange))
+            {
+                navMeshAgent.isStopped = false;
+                navMeshAgent.SetDestination(currentTarget.position);
+            }
+            else navMeshAgent.isStopped = true;
         }
+        else ChangeState(BehaviorState.Idle);
     }
 
     void _AttackUpdate()
@@ -120,6 +136,11 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         return nearest;
+    }
+
+    private bool CheckDesiredRange(float range)
+    {
+        return Vector3.Distance(transform.position, currentTarget.position) <= range;
     }
 
     private void ChangeState(BehaviorState newState)
